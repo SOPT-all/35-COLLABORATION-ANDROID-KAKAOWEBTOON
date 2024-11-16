@@ -62,24 +62,17 @@ feat-my-page-api
 ┃ ┃ ┣ 📂 response
 ┃ ┣ 📂 repository
 ┃ ┣ 📂 service
+
+┣ 📂 di
 ┣ 📂 domain
 ┃ ┣ 📂 model
 ┃ ┣ 📂 repository
 ┣ 📂 presentation
-┃ ┣ 📂 common
 ┃ ┣ 📂 model
-┃ ┣ 📂 type
 ┃ ┣ 📂 ui
+
+┃ ┃ ┣ 📂 component
 ┃ ┃ ┣ 📂 main
-┃ ┃ ┣ 📂 productdetail
-┃ ┃ ┣ 📂 search
 ┣ 📂 theme
 ┣ 📂 util
-┃ ┣ 📂 base
-┃ ┣ 📂 component
-┃ ┣ 📂 context
-┃ ┣ 📂 fragment
-┃ ┣ 📂 int
-┃ ┣ 📂 intent
-┃ ┣ 📂 modifier
 ```
