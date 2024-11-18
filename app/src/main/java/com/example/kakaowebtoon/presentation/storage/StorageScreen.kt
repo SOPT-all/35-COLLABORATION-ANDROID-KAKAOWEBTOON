@@ -13,12 +13,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun StorageScreen(
     modifier: Modifier = Modifier,
-    viewModel: StorageViewModel = hiltViewModel(),
+    viewModel: StorageViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(color = Color.White),
+            .background(color = Color.White)
     ) {
         Text(text = "MainScreen 입니다")
     }

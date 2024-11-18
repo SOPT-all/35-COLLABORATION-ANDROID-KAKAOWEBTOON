@@ -13,12 +13,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel(),
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(color = Color.White),
+            .background(color = Color.White)
     ) {
         Text(text = "HomeScreen 입니다")
     }

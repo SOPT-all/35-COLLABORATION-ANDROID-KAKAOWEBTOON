@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,4 +29,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-

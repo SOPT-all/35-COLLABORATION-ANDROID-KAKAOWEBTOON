@@ -7,4 +7,3 @@ interface DummyService {
     @POST("/API")
     suspend fun funName(): List<DummyResponseDto>
 }
-

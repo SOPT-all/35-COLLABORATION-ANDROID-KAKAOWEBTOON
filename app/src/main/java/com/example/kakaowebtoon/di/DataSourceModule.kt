@@ -20,6 +20,4 @@ abstract class DataSourceModule {
     @Binds
     @Singleton
     abstract fun bindsDummyLocalDataSource(dummyLocalDataSourceImpl: DummyLocalDataSourceImpl): DummyLocalDataSource
-
-
 }

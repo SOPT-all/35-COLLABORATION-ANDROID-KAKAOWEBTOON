@@ -13,12 +13,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun EpisodeScreen(
     modifier: Modifier = Modifier,
-    viewModel: EpisodeViewModel = hiltViewModel(),
+    viewModel: EpisodeViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(color = Color.White),
+            .background(color = Color.White)
     ) {
         Text(text = "EpisodeScreen 입니다")
     }

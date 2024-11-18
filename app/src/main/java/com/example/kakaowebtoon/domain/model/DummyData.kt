@@ -1,5 +1,5 @@
 package com.example.kakaowebtoon.domain.model
 
-data class DummyDataClass(
+data class DummyData(
     var description: String
 )

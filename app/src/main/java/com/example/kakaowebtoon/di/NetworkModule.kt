@@ -54,7 +54,6 @@ object NetworkModule {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
-
     @ExperimentalSerializationApi
     @Provides
     @Singleton

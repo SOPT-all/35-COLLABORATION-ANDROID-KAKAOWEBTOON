@@ -14,6 +14,4 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindDummyRepository(dummyRepositoryImpl: DummyRepositoryImpl): DummyRepository
-
-
 }
