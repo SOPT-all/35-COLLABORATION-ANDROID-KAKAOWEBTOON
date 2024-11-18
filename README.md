@@ -22,7 +22,7 @@
 feat-my-page-api
 
 [commit]
-- [feat] #이슈번호 뭐했지롱(ex: 공통 텍스트필드 컴포넌트 구현)
+- [feat] #이슈번호: 뭐했지롱(ex: 공통 텍스트필드 컴포넌트 구현)
 </aside>
 
 <aside>
