@@ -71,6 +71,7 @@ feat-my-page-api
 ┣ 📂 domain
 ┃ ┣ 📂 model
 ┃ ┣ 📂 repository
+┃ ┣ 📂 usecase
 ┣ 📂 presentation
 ┃ ┣ 📂 model
 ┃ ┣ 📂 ui
