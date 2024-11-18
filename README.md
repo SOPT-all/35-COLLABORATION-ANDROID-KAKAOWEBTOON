@@ -13,12 +13,14 @@
 ## 📗 *****Convention*****
 <aside>
 1️⃣ Git Convention
-
+[branch]
 - `feat` : 구현
 - `refactor` : 리팩토링
 - `init` : 초기세팅
 - 예시) feat-home-ui (feat-어디서-무엇을)
 feat-my-page-api
+[commit]
+- [feat] #이슈번호 뭐했지롱(ex: 공통 텍스트필드 컴포넌트 구현)
 </aside>
 
 <aside>
