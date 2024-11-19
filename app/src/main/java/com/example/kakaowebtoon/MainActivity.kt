@@ -13,22 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
-import com.example.kakaowebtoon.ui.theme.body1Regular
-import com.example.kakaowebtoon.ui.theme.body2Regular
-import com.example.kakaowebtoon.ui.theme.body3Regular
-import com.example.kakaowebtoon.ui.theme.body4SemiBold
-import com.example.kakaowebtoon.ui.theme.body5Regular
-import com.example.kakaowebtoon.ui.theme.body6Regular
-import com.example.kakaowebtoon.ui.theme.caption1Bold
-import com.example.kakaowebtoon.ui.theme.caption2Medium
-import com.example.kakaowebtoon.ui.theme.caption3Light
-import com.example.kakaowebtoon.ui.theme.caption4SemiBold
-import com.example.kakaowebtoon.ui.theme.head1SemiBold
-import com.example.kakaowebtoon.ui.theme.head2Bold
-import com.example.kakaowebtoon.ui.theme.title1ExtraBold
-import com.example.kakaowebtoon.ui.theme.title2SemiBold
-import com.example.kakaowebtoon.ui.theme.title3SemiBold
-import com.example.kakaowebtoon.ui.theme.title4SemiBold
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
