@@ -16,6 +16,11 @@ object KakaoWebtoonTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalKakaoWebtoonColors.current
+
+    val typography: KakaoTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = KakaoWebtoonTypography
 }
 
 @Composable
