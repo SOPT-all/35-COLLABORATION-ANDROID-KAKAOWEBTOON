@@ -1,7 +1,9 @@
 package com.example.kakaowebtoon.presentation.ui.search.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,8 +14,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.kakaowebtoon.R
+import com.example.kakaowebtoon.presentation.util.noRippleClickable
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
 
@@ -22,9 +27,10 @@ fun SearchTextField(
     value: String,
     onValueChange: (String) -> Unit,
     placeholder: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    maxLength: Int = 20
 ) {
-    Box(
+    Row(
         modifier = modifier
             .fillMaxWidth()
             .background(
@@ -35,10 +41,15 @@ fun SearchTextField(
     ) {
         BasicTextField(
             value = value,
-            onValueChange = onValueChange,
+            onValueChange = {
+                if (it.length <= maxLength) {
+                    onValueChange(it)
+                }
+            },
             textStyle = defaultKakaoWebtoonTypography.title2SemiBold.copy(
                 color = defaultKakaoWebtoonColors.white
             ),
+            maxLines = 1,
             cursorBrush = SolidColor(if (value.isEmpty()) defaultKakaoWebtoonColors.grey6 else defaultKakaoWebtoonColors.white),
             decorationBox = { innerTextField ->
                 if (value.isEmpty()) {
@@ -49,11 +60,18 @@ fun SearchTextField(
                     )
                 }
                 innerTextField()
-            },
+            }
         )
+        if (value.isNotEmpty()) {
+            Spacer(modifier = modifier.weight(1f))
+            Image(
+                painter = painterResource(R.drawable.ic_search_subtraction),
+                contentDescription = null,
+                modifier = Modifier.noRippleClickable { onValueChange("") }
+            )
+        }
     }
 }
-
 
 @Preview
 @Composable
@@ -63,7 +81,6 @@ fun CustomBasicTextFieldPreview() {
     SearchTextField(
         value = text.value,
         onValueChange = { text.value = it },
-        placeholder = "작품, 작가, 장르를 입력하세요",
-        modifier = Modifier.fillMaxWidth()
+        placeholder = "작품, 작가, 장르를 입력하세요"
     )
 }
