@@ -16,6 +16,7 @@ enum class IndicatorType(
     val contentsList: List<String>,
     val typoStyle: TextStyle,
     val spaceBy: Dp,
+    val spacerHeight: Dp = 4.dp,
     @ColorRes val indicatorColor: Color = defaultKakaoWebtoonColors.yellow1,
     @ColorRes val selectedFontColor: Color = defaultKakaoWebtoonColors.white,
     @ColorRes val unSelectedFontColor: Color = defaultKakaoWebtoonColors.darkGrey5
@@ -60,6 +61,7 @@ enum class IndicatorType(
         ),
         typoStyle = defaultKakaoWebtoonTypography.body2Regular,
         spaceBy = 18.dp,
+        spacerHeight = 0.dp,
         indicatorColor = defaultKakaoWebtoonColors.yellow2,
         selectedFontColor = defaultKakaoWebtoonColors.white
     )
