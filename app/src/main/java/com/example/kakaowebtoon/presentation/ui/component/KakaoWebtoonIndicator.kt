@@ -28,7 +28,7 @@ import com.example.kakaowebtoon.presentation.util.noRippleClickable
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 
 @Composable
-fun BaseIndicator(
+fun KakaoWebtoonIIndicator(
     indicatorType: IndicatorType,
     modifier: Modifier = Modifier
 ) {
@@ -86,8 +86,8 @@ fun BaseIndicator(
 @Composable
 private fun BaseIndicatorPreview() {
     Column(modifier = Modifier.background(color = defaultKakaoWebtoonColors.black3)) {
-        BaseIndicator(indicatorType = IndicatorType.MAIN)
-        BaseIndicator(indicatorType = IndicatorType.Episode)
-        BaseIndicator(indicatorType = IndicatorType.Storage)
+        KakaoWebtoonIIndicator(indicatorType = IndicatorType.MAIN)
+        KakaoWebtoonIIndicator(indicatorType = IndicatorType.Episode)
+        KakaoWebtoonIIndicator(indicatorType = IndicatorType.Storage)
     }
 }
