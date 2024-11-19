@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.storage
+package com.example.kakaowebtoon.presentation.ui.storage
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

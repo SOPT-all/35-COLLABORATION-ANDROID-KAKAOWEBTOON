@@ -2,6 +2,7 @@ package com.example.kakaowebtoon.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -40,7 +41,7 @@ data class KakaoTypography(
     val caption4SemiBold: TextStyle
 )
 
-val KakaoWebtoonTypography = KakaoTypography(
+val defaultKakaoWebtoonTypography = KakaoTypography(
     // Head
     head1SemiBold = TextStyle(
         fontFamily = FontFamily(Font(R.font.roboto_bold)),
@@ -161,3 +162,5 @@ val KakaoWebtoonTypography = KakaoTypography(
         letterSpacing = (-0.1).sp
     )
 )
+
+val LocalKakaoWebtoonTypography = staticCompositionLocalOf { defaultKakaoWebtoonTypography }

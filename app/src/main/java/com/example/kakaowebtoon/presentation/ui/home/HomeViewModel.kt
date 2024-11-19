@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.home
+package com.example.kakaowebtoon.presentation.ui.home
 
 import androidx.lifecycle.ViewModel
 import com.example.kakaowebtoon.domain.usecase.DummyUseCase

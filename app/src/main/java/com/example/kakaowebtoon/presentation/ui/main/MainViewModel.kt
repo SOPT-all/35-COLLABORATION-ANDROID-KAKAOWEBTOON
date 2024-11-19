@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.storage
+package com.example.kakaowebtoon.presentation.ui.main
 
 import androidx.lifecycle.ViewModel
 import com.example.kakaowebtoon.domain.usecase.DummyUseCase
@@ -6,6 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class StorageViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val dummyUseCase: DummyUseCase
 ) : ViewModel()

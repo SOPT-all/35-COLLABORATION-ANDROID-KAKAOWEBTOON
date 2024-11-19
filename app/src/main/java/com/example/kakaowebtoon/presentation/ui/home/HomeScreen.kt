@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.home
+package com.example.kakaowebtoon.presentation.ui.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

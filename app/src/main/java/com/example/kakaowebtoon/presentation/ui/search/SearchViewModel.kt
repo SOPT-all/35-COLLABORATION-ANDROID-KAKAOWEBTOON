@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.episode
+package com.example.kakaowebtoon.presentation.ui.search
 
 import androidx.lifecycle.ViewModel
 import com.example.kakaowebtoon.domain.usecase.DummyUseCase
@@ -6,6 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class EpisodeViewModel @Inject constructor(
+class SearchViewModel @Inject constructor(
     private val dummyUseCase: DummyUseCase
 ) : ViewModel()

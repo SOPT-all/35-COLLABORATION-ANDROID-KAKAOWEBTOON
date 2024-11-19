@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.search
+package com.example.kakaowebtoon.presentation.ui.episode
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -11,21 +11,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun SearchScreen(
+fun EpisodeScreen(
     modifier: Modifier = Modifier,
-    viewModel: SearchViewModel = hiltViewModel()
+    viewModel: EpisodeViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        Text(text = "MainScreen 입니다")
+        Text(text = "EpisodeScreen 입니다")
     }
 }
 
 @Preview
 @Composable
 private fun MainScreenPreview() {
-    SearchScreen()
+    EpisodeScreen()
 }
