@@ -33,7 +33,6 @@ val Black2 = Color(0x001E1E1E)
 val Black3 = Color(0x00121212)
 val Black4 = Color(0x00000000)
 
-
 @Immutable
 data class KakaoWebtoonColors(
     // primary
