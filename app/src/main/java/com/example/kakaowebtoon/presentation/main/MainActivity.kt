@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.text.Typography.dagger
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
