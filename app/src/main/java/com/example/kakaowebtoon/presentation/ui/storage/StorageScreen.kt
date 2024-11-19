@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.home
+package com.example.kakaowebtoon.presentation.ui.storage
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -11,21 +11,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun HomeScreen(
+fun StorageScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: StorageViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        Text(text = "HomeScreen 입니다")
+        Text(text = "MainScreen 입니다")
     }
 }
 
 @Preview
 @Composable
 private fun MainScreenPreview() {
-    HomeScreen()
+    StorageScreen()
 }

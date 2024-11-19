@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.main
+package com.example.kakaowebtoon.presentation.ui.episode
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -9,24 +9,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.kakaowebtoon.presentation.home.HomeViewModel
 
 @Composable
-fun MainScreen(
+fun EpisodeScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: EpisodeViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        Text(text = "MainScreen 입니다")
+        Text(text = "EpisodeScreen 입니다")
     }
 }
 
 @Preview
 @Composable
 private fun MainScreenPreview() {
-    MainScreen()
+    EpisodeScreen()
 }

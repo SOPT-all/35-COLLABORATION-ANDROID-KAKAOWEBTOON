@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.storage
+package com.example.kakaowebtoon.presentation.ui.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -9,11 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.kakaowebtoon.presentation.ui.home.HomeViewModel
 
 @Composable
-fun StorageScreen(
+fun MainScreen(
     modifier: Modifier = Modifier,
-    viewModel: StorageViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier
@@ -27,5 +28,5 @@ fun StorageScreen(
 @Preview
 @Composable
 private fun MainScreenPreview() {
-    StorageScreen()
+    MainScreen()
 }

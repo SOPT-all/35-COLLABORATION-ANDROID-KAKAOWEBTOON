@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.main
+package com.example.kakaowebtoon.presentation.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

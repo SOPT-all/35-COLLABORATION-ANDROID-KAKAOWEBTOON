@@ -20,16 +20,18 @@ object KakaoWebtoonTheme {
     val typography: KakaoTypography
         @Composable
         @ReadOnlyComposable
-        get() = KakaoWebtoonTypography
+        get() = LocalKakaoWebtoonTypography.current
 }
 
 @Composable
 fun ProvideKakaoWebttonColorsAndTypography(
     colors: KakaoWebtoonColors,
+    typography: KakaoTypography,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
         LocalKakaoWebtoonColors provides colors,
+        LocalKakaoWebtoonTypography provides typography,
         content = content
     )
 }
@@ -39,7 +41,10 @@ fun KakaoWebtoonTheme(
     backgroundColor: Color = defaultKakaoWebtoonColors.white,
     content: @Composable () -> Unit
 ) {
-    ProvideKakaoWebttonColorsAndTypography(colors = defaultKakaoWebtoonColors) {
+    ProvideKakaoWebttonColorsAndTypography(
+        colors = defaultKakaoWebtoonColors,
+        typography = defaultKakaoWebtoonTypography
+    ) {
         val view = LocalView.current
         if (!view.isInEditMode) {
             SideEffect {
