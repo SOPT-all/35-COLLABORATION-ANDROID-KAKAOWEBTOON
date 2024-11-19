@@ -7,7 +7,7 @@
 | 신민석 <br>[@t1nm1ksun](https://github.com/t1nm1ksun) |             김종명 <br>[@jm991014](https://github.com/jm991014)            |              송민서 <br>[@MinseoSONG](MinseoSONG)               |
 |:---:|:-----------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
 | <img width="250" src="https://avatars.githubusercontent.com/u/122257945?v=4"/> | <img width="250" src="https://github.com/user-attachments/assets/73035da5-3642-402a-abe0-2af88ead5bb7"/> | <img width="250" src="https://github.com/user-attachments/assets/550a52f7-097a-4e3a-a954-2714500aaf12"/> |
-| `View1 ()` | `View2 ()`| `View3 ()`|
+| `SearchView,StorageView` | `HomeView`| `EpisodeView`|
 
 
 ## 📗 *****Convention*****
@@ -22,7 +22,7 @@
 feat-my-page-api
 
 [commit]
-- [feat] #이슈번호 뭐했지롱(ex: 공통 텍스트필드 컴포넌트 구현)
+- [feat] #이슈번호: 뭐했지롱(ex: 공통 텍스트필드 컴포넌트 구현)
 </aside>
 
 <aside>
@@ -71,6 +71,7 @@ feat-my-page-api
 ┣ 📂 domain
 ┃ ┣ 📂 model
 ┃ ┣ 📂 repository
+┃ ┣ 📂 usecase
 ┣ 📂 presentation
 ┃ ┣ 📂 model
 ┃ ┣ 📂 ui
