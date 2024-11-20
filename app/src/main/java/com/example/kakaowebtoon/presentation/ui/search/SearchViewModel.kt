@@ -49,7 +49,7 @@ class SearchViewModel @Inject constructor(
             WebtoonCard(
                 imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
                 title = "청춘 로맨스",
-                promotion = "3다무",
+                promotion = "시계",
                 author = "미울, BV",
                 genre = "#로맨스"
             ),
@@ -63,7 +63,7 @@ class SearchViewModel @Inject constructor(
             WebtoonCard(
                 imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
                 title = "청춘 로맨스",
-                promotion = "3다무",
+                promotion = "시계",
                 author = "미울, BV",
                 genre = "#로맨스"
             ),
@@ -77,7 +77,7 @@ class SearchViewModel @Inject constructor(
             WebtoonCard(
                 imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
                 title = "청춘 로맨스",
-                promotion = "3다무",
+                promotion = "시계",
                 author = "미울, BV",
                 genre = "#로맨스"
             ),
@@ -91,7 +91,7 @@ class SearchViewModel @Inject constructor(
             WebtoonCard(
                 imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
                 title = "청춘 로맨스",
-                promotion = "3다무",
+                promotion = "시계",
                 author = "미울, BV",
                 genre = "#로맨스"
             ),
@@ -105,7 +105,7 @@ class SearchViewModel @Inject constructor(
             WebtoonCard(
                 imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
                 title = "청춘 로맨스",
-                promotion = "3다무",
+                promotion = "시계",
                 author = "미울, BV",
                 genre = "#로맨스"
             ),

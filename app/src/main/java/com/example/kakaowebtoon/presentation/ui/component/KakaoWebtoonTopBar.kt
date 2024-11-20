@@ -27,7 +27,9 @@ import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
 @Composable
 fun KakaoWebtoonTopBar(
     topBarType: TopBarType,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    firstIconOnClick: () -> Unit = {},
+    secondIconOnClick: () -> Unit = {}
 ) {
     Box(
         modifier = modifier
@@ -45,7 +47,7 @@ fun KakaoWebtoonTopBar(
                 modifier = Modifier
                     .padding(start = topBarType.firstIconStartPadding)
                     .noRippleClickable {
-                        topBarType.firstIconOnClick?.invoke()
+                        firstIconOnClick()
                     },
                 tint = defaultKakaoWebtoonColors.white
             )
@@ -58,7 +60,7 @@ fun KakaoWebtoonTopBar(
                 modifier = Modifier
                     .padding(end = topBarType.secondIconEndPadding)
                     .noRippleClickable {
-                        topBarType.secondIconOnClick?.invoke()
+                        secondIconOnClick()
                     },
                 tint = defaultKakaoWebtoonColors.white
             )
