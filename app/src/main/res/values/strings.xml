@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Kakao Webtoon</string>
+
+    <!--  Search View  -->
+    <string name="search_text_field_placeholder">작품, 작가, 장르를 입력하세요.</string>
+    <string name="search_first_webtoon_list">웹툰 1</string>
+    <string name="search_recommend_webtoon_list">나를 위한 추천 웹툰</string>
+    <string name="search_filtering_popularity">인기순</string>
+    <string name="search_under_arrow_icon_description">Icon Search View Under Arrow</string>
+
+    <!--  Promotion -->
+    <string name="webtoon_promotion_free">연재 무료</string>
+    <string name="webtoon_promotion_free_later">3다무</string>
+    <string name="webtoon_promotion_up">up</string>
+
+
 </resources>

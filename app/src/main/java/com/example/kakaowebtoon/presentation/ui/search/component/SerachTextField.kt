@@ -16,7 +16,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.R
@@ -74,7 +76,7 @@ fun SearchTextField(
 
             Spacer(modifier = modifier.weight(1f))
             Image(
-                painter = painterResource(R.drawable.ic_search_subtraction),
+                imageVector = ImageVector.vectorResource(R.drawable.ic_search_subtraction),
                 contentDescription = null,
                 modifier = Modifier
                     .noRippleClickable { onValueChange("") }
@@ -82,7 +84,7 @@ fun SearchTextField(
             )
         }
         Icon(
-            painter = painterResource(R.drawable.ic_search_close),
+            imageVector = ImageVector.vectorResource(R.drawable.ic_search_close),
             contentDescription = "Search View Close Icon",
             tint = defaultKakaoWebtoonColors.white,
             modifier = modifier.noRippleClickable { }

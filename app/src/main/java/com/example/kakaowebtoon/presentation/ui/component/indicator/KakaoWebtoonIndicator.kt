@@ -1,4 +1,4 @@
-package com.example.kakaowebtoon.presentation.ui.component
+package com.example.kakaowebtoon.presentation.ui.component.indicator
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
