@@ -24,7 +24,7 @@ enum class TopBarType(
     ),
     Episode(
         firstIconResId = R.drawable.ic_episode_arrow_left,
-        secondIconResId = R.drawable.ic_episode_heart,
+        secondIconResId = R.drawable.ic_topbar_heart,
         thirdIconResId = R.drawable.ic_episode_see_more,
         firstIconOnClick = {
             // TODO: 뒤로가기
