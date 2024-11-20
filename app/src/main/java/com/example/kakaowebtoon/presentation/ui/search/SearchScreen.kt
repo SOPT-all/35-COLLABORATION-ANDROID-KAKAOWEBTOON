@@ -9,16 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.kakaowebtoon.presentation.ui.search.component.SearchTextField
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 
 @Composable
 fun SearchScreen(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 //    viewModel: SearchViewModel = hiltViewModel()
 ) {
     Column(

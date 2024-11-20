@@ -19,7 +19,6 @@ inline fun Modifier.noRippleClickable(
     }
 }
 
-
 inline fun Modifier.showIf(condition: Boolean): Modifier {
     return if (condition) this else Modifier.size(0.dp)
 }
