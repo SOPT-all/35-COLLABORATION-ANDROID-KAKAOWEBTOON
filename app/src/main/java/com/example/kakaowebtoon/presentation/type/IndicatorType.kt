@@ -7,6 +7,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.domain.model.EpisodeViewIndicatorContents
 import com.example.kakaowebtoon.domain.model.MainViewIndicatorContents
+import com.example.kakaowebtoon.domain.model.SearchViewIndicatorContents
 import com.example.kakaowebtoon.domain.model.StorageViewIndicatorContents
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
@@ -64,5 +65,18 @@ enum class IndicatorType(
         spacerHeight = 0.dp,
         indicatorColor = defaultKakaoWebtoonColors.yellow2,
         selectedFontColor = defaultKakaoWebtoonColors.white
+    ),
+    Search(
+        contentsList = persistentListOf(
+            SearchViewIndicatorContents.ALL.contents,
+            SearchViewIndicatorContents.FREE.contents,
+            SearchViewIndicatorContents.FREE_LATER.contents
+        ),
+        typoStyle = defaultKakaoWebtoonTypography.title2SemiBold,
+        spaceBy = 0.dp,
+        spacerHeight = 11.dp,
+        indicatorColor = defaultKakaoWebtoonColors.yellow2,
+        selectedFontColor = defaultKakaoWebtoonColors.white,
+        unSelectedFontColor = defaultKakaoWebtoonColors.grey4
     )
 }

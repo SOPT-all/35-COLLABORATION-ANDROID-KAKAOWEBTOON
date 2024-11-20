@@ -26,3 +26,9 @@ enum class StorageViewIndicatorContents(val contents: String) {
     DOWNLOADED(contents = "다운로드"),
     COMMENTS(contents = "댓글")
 }
+
+enum class SearchViewIndicatorContents(val contents: String) {
+    ALL(contents = "전체"),
+    FREE(contents = "연재무료"),
+    FREE_LATER(contents = "기다리면무료")
+}
