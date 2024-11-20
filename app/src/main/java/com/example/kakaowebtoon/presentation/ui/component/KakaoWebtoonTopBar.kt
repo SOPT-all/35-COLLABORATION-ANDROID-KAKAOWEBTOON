@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,58 +29,63 @@ fun KakaoWebtoonTopBar(
     topBarType: TopBarType,
     modifier: Modifier = Modifier
 ) {
-    Row(
+    Box(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+            .fillMaxWidth(),
+        contentAlignment = Alignment.Center
     ) {
-        Icon(
-            imageVector = ImageVector.vectorResource(topBarType.firstIconResId),
-            contentDescription = null,
-            modifier = Modifier
-                .noRippleClickable {
-                    topBarType.firstIconOnClick?.invoke()
-                },
-            tint = defaultKakaoWebtoonColors.white
-        )
-
-        Box(
-            modifier = Modifier.weight(1f),
-            contentAlignment = Alignment.Center
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            if (topBarType.storageTitleResId != null) {
-                Text(
-                    text = stringResource(topBarType.storageTitleResId),
-                    color = defaultKakaoWebtoonColors.white,
-                    style = defaultKakaoWebtoonTypography.head2Bold
-                )
-            } else if (topBarType.mainImageResId != null) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(topBarType.mainImageResId),
-                    contentDescription = null,
-                    modifier = Modifier.size(35.dp, 13.dp),
-                    tint = defaultKakaoWebtoonColors.white
-                )
-            }
+            Icon(
+                imageVector = ImageVector.vectorResource(topBarType.firstIconResId),
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(start = topBarType.firstIconStartPadding.dp)
+                    .noRippleClickable {
+                        topBarType.firstIconOnClick?.invoke()
+                    },
+                tint = defaultKakaoWebtoonColors.white
+            )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Icon(
+                imageVector = ImageVector.vectorResource(topBarType.secondIconResId),
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(end = topBarType.secondIconEndPadding.dp)
+                    .noRippleClickable {
+                        topBarType.secondIconOnClick?.invoke()
+                    },
+                tint = defaultKakaoWebtoonColors.white
+            )
+
+            Icon(
+                imageVector = ImageVector.vectorResource(topBarType.thirdIconResId),
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(end = topBarType.thirdIconEndPadding.dp),
+                tint = defaultKakaoWebtoonColors.white
+            )
         }
 
-        Icon(
-            imageVector = ImageVector.vectorResource(topBarType.secondIconResId),
-            contentDescription = null,
-            modifier = Modifier
-                .noRippleClickable {
-                    topBarType.secondIconOnClick?.invoke()
-                },
-            tint = defaultKakaoWebtoonColors.white
-        )
-
-        Icon(
-            imageVector = ImageVector.vectorResource(topBarType.thirdIconResId),
-            contentDescription = null,
-            tint = defaultKakaoWebtoonColors.white
-        )
+        if (topBarType.storageTitleResId != null) {
+            Text(
+                text = stringResource(topBarType.storageTitleResId),
+                color = defaultKakaoWebtoonColors.white,
+                style = defaultKakaoWebtoonTypography.head2Bold
+            )
+        } else if (topBarType.mainImageResId != null) {
+            Icon(
+                imageVector = ImageVector.vectorResource(topBarType.mainImageResId),
+                contentDescription = null,
+                modifier = Modifier.size(35.dp, 13.dp),
+                tint = defaultKakaoWebtoonColors.white
+            )
+        }
     }
 }
 
