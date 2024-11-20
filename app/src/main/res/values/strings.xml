@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Kakao Webtoon</string>
 
+    <string name="storage_title">보관함</string>
+
     <!--    bottom navigation bar item-->
     <string name="bottom_navigation_bar_item_home">시간표</string>
     <string name="bottom_navigation_bar_item_rank">랭킹</string>
