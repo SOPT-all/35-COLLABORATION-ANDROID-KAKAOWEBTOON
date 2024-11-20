@@ -58,7 +58,7 @@ val defaultKakaoWebtoonTypography = KakaoTypography(
         letterSpacing = (-0.32).sp
     ),
 
-// Title
+    // Title
     title1ExtraBold = TextStyle(
         fontFamily = FontFamily(Font(R.font.roboto_bold)),
         fontWeight = FontWeight.ExtraBold,
@@ -88,7 +88,7 @@ val defaultKakaoWebtoonTypography = KakaoTypography(
         letterSpacing = (-0.24).sp
     ),
 
-// Body
+    // Body
     body1Regular = TextStyle(
         fontFamily = FontFamily(Font(R.font.roboto_regular)),
         fontWeight = FontWeight.Normal,
@@ -132,7 +132,7 @@ val defaultKakaoWebtoonTypography = KakaoTypography(
         letterSpacing = (0).sp
     ),
 
-// Caption
+    // Caption
     caption1Bold = TextStyle(
         fontFamily = FontFamily(Font(R.font.roboto_bold)),
         fontWeight = FontWeight.Bold,
