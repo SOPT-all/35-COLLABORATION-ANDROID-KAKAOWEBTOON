@@ -2,6 +2,7 @@ package com.example.kakaowebtoon.presentation.ui.search
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,8 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -32,29 +31,44 @@ import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
 
 @Composable
+fun SearchRoute(
+    padding: PaddingValues,
+    popUpBackStack: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: SearchViewModel = hiltViewModel()
+) {
+    SearchScreen(
+        modifier = modifier.padding(padding),
+        popUpBackStack = popUpBackStack,
+        viewModel = viewModel
+    )
+}
+
+@Composable
 fun SearchScreen(
+    popUpBackStack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SearchViewModel = hiltViewModel()
 ) {
     val webtoonCards by viewModel.webtoonSearchList.collectAsState()
     val webtoonDummyCards by viewModel.webtoonDummyList.collectAsState()
+    val searchText by viewModel.searchText.collectAsState()
 
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(color = defaultKakaoWebtoonColors.black3)
     ) {
-        val text = remember { mutableStateOf("") }
         Spacer(modifier = Modifier.height(30.dp))
         SearchTextField(
-            value = text.value,
-            onValueChange = { text.value = it },
-            placeholder = stringResource(R.string.search_text_field_placeholder)
+            value = searchText,
+            onValueChange = { viewModel.updateSearchText(it) },
+            placeholder = stringResource(R.string.search_text_field_placeholder),
+            popUpBackStack = popUpBackStack
         )
         Spacer(modifier = Modifier.height(9.dp))
         SearchViewIndicator()
         Spacer(modifier = Modifier.height(13.dp))
-
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -113,5 +127,5 @@ fun SearchScreen(
 @Preview
 @Composable
 private fun MainScreenPreview() {
-    SearchScreen()
+    SearchScreen(popUpBackStack = {})
 }

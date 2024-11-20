@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.kakaowebtoon.presentation.util.noRippleClickable
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
@@ -35,7 +36,8 @@ fun HomeScreen(
     ) {
         Text(
             text = "HomeScreen 입니다",
-            color = KakaoWebtoonTheme.colors.white
+            color = KakaoWebtoonTheme.colors.white,
+            modifier = modifier.noRippleClickable { onNavigateToSearch() }
         )
     }
 }

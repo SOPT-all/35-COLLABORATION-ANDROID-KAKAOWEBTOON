@@ -51,7 +51,10 @@ fun MainNavHost(
             storageNavGraph(padding = padding)
 
             // TODO: Search NavGraph
-            searchNavGraph(padding = padding)
+            searchNavGraph(
+                padding = padding,
+                popUpBackStack = navigator::popBackStack
+            )
 
             // TODO: Episode NavGraph
             episodeNavGraph(padding = padding)
