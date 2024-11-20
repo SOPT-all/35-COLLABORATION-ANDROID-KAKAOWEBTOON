@@ -31,19 +31,19 @@ class MainNavigator(
         }
 
     fun navigate(mainNavigationBarItemType: MainBottomNavType) {
-        navOptions {
-            popUpTo(MainBottomNavType.HOME::class.qualifiedName.orEmpty()) {
+        val navOptions = navOptions {
+            popUpTo(0) {
                 saveState = true
             }
             launchSingleTop = true
             restoreState = true
-        }.let { navOptions ->
-            when (mainNavigationBarItemType) {
-                MainBottomNavType.HOME -> navController.navigateHome(navOptions)
-                MainBottomNavType.RANK -> navController.navigateRank(navOptions)
-                MainBottomNavType.GIFT -> navController.navigateGift(navOptions)
-                MainBottomNavType.STORAGE -> navController.navigateStorage(navOptions)
-            }
+        }
+
+        when (mainNavigationBarItemType) {
+            MainBottomNavType.HOME -> navController.navigateHome(navOptions)
+            MainBottomNavType.RANK -> navController.navigateRank(navOptions)
+            MainBottomNavType.GIFT -> navController.navigateGift(navOptions)
+            MainBottomNavType.STORAGE -> navController.navigateStorage(navOptions)
         }
     }
 
