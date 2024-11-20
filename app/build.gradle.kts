@@ -82,6 +82,6 @@ dependencies {
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)
 
-    //Coil
+    // Coil
     implementation(libs.coil.compose)
 }

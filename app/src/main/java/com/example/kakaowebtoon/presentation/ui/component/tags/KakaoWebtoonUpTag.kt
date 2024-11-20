@@ -13,7 +13,8 @@ import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
 
 @Composable
 fun KakaoWebtoonUpTag(modifier: Modifier = Modifier) {
-    Text(text = "UP",
+    Text(
+        text = "UP",
         style = defaultKakaoWebtoonTypography.caption4ExtraBold,
         color = defaultKakaoWebtoonColors.white,
         modifier = modifier

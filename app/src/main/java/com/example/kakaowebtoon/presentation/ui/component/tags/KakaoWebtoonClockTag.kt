@@ -19,11 +19,9 @@ fun KakaoWebtoonClockTag(modifier: Modifier = Modifier) {
         imageVector = ImageVector.vectorResource(id = R.drawable.ic_chip_clock),
         contentDescription = null,
         modifier = modifier
-
             .background(color = defaultKakaoWebtoonColors.yellow2, shape = RoundedCornerShape(5.dp))
             .padding(2.dp)
     )
-
 }
 
 @Preview

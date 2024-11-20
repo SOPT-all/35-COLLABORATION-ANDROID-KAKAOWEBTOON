@@ -32,7 +32,6 @@ fun KakaoWebtoonGenreTag(genre: String, modifier: Modifier = Modifier) {
     )
 }
 
-
 @Preview
 @Composable
 private fun KakaoWebtoonGenreTagPreview() {

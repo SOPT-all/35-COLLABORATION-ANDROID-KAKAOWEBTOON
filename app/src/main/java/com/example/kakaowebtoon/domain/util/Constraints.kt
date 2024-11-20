@@ -1,5 +1,9 @@
 package com.example.kakaowebtoon.domain.util
 
+object Dummy {
+    const val DESCRIPTION = "더미입니당"
+}
+
 object Promotion {
     const val FREE = "연재 무료"
     const val FREE_LATER = "3다무"

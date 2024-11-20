@@ -30,10 +30,9 @@ fun KakaoWebtoonCard(
         modifier = modifier
             .height(IntrinsicSize.Min)
     ) {
-
         AsyncImage(
             model = card.imageUrl,
-            contentDescription = null,
+            contentDescription = null
         )
         Spacer(modifier = modifier.width(12.dp))
 
@@ -62,7 +61,6 @@ fun KakaoWebtoonCard(
                 color = defaultKakaoWebtoonColors.grey4
             )
         }
-
     }
 }
 

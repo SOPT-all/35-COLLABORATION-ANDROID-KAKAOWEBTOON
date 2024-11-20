@@ -37,7 +37,6 @@ class SearchViewModel @Inject constructor(
         _webtoonSearchList.value = dummyData
     }
 
-
     private fun loadDummyWebtoonCards() {
         val dummyData = listOf(
             WebtoonCard(
@@ -81,7 +80,8 @@ class SearchViewModel @Inject constructor(
                 promotion = "연재 무료",
                 author = "이영원",
                 genre = "#로맨스"
-            ), WebtoonCard(
+            ),
+            WebtoonCard(
                 imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
                 title = "청춘 로맨스",
                 promotion = "3다무",
@@ -94,7 +94,8 @@ class SearchViewModel @Inject constructor(
                 promotion = "연재 무료",
                 author = "이영원",
                 genre = "#로맨스"
-            ), WebtoonCard(
+            ),
+            WebtoonCard(
                 imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
                 title = "청춘 로맨스",
                 promotion = "3다무",

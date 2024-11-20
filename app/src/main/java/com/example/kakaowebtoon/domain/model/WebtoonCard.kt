@@ -5,5 +5,5 @@ data class WebtoonCard(
     val title: String,
     val promotion: String,
     val author: String,
-    val genre: String,
+    val genre: String
 )
