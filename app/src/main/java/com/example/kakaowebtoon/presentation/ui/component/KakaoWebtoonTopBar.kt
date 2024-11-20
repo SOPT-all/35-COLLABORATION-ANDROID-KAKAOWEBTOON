@@ -43,7 +43,7 @@ fun KakaoWebtoonTopBar(
                 imageVector = ImageVector.vectorResource(topBarType.firstIconResId),
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(start = topBarType.firstIconStartPadding.dp)
+                    .padding(start = topBarType.firstIconStartPadding)
                     .noRippleClickable {
                         topBarType.firstIconOnClick?.invoke()
                     },
@@ -56,7 +56,7 @@ fun KakaoWebtoonTopBar(
                 imageVector = ImageVector.vectorResource(topBarType.secondIconResId),
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(end = topBarType.secondIconEndPadding.dp)
+                    .padding(end = topBarType.secondIconEndPadding)
                     .noRippleClickable {
                         topBarType.secondIconOnClick?.invoke()
                     },
@@ -67,7 +67,7 @@ fun KakaoWebtoonTopBar(
                 imageVector = ImageVector.vectorResource(topBarType.thirdIconResId),
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(end = topBarType.thirdIconEndPadding.dp),
+                    .padding(end = topBarType.thirdIconEndPadding),
                 tint = defaultKakaoWebtoonColors.white
             )
         }
