@@ -5,18 +5,20 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.kakaowebtoon.presentation.model.Route
+import com.example.kakaowebtoon.presentation.ui.episode.EpisodeRoute
 
 fun NavController.navigateEpisode() {
     navigate(route = Route.Episode)
 }
 
 fun NavGraphBuilder.episodeNavGraph(
-    padding: PaddingValues
+    padding: PaddingValues,
+    popUpBackStack: () -> Unit
 ) {
     composable<Route.Episode> {
-//        TODO: Route 마무리
-//        EpisodeRoute(
-//            padding = padding
-//        )
+        EpisodeRoute(
+            padding = padding,
+            popUpBackStack = popUpBackStack
+        )
     }
 }

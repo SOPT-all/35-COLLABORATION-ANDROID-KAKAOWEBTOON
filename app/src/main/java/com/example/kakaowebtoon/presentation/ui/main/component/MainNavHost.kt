@@ -45,7 +45,10 @@ fun MainNavHost(
             rankNavGraph(padding = padding)
 
             // Dummy NavGraph
-            giftNavGraph(padding = padding)
+            giftNavGraph(
+                padding = padding,
+                onNavigateToEpisode = navigator::navigateEpisode
+            )
 
             // TODO: Storage NavGraph
             storageNavGraph(
@@ -60,7 +63,7 @@ fun MainNavHost(
             )
 
             // TODO: Episode NavGraph
-            episodeNavGraph(padding = padding)
+            episodeNavGraph(padding = padding, popUpBackStack = navigator::popBackStackIfNotHome)
         }
     }
 }

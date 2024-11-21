@@ -16,9 +16,13 @@ fun NavController.navigateGift(navOptions: NavOptions) {
 }
 
 fun NavGraphBuilder.giftNavGraph(
-    padding: PaddingValues
+    padding: PaddingValues,
+    onNavigateToEpisode: () -> Unit
 ) {
     composable<Route.Gift> {
-        GiftRoute(padding = padding)
+        GiftRoute(
+            padding = padding,
+            onNavigateToEpisode = onNavigateToEpisode
+        )
     }
 }
