@@ -70,8 +70,8 @@ class EpisodeViewModel @Inject constructor(
                 index = 3,
                 title = "선언금지",
                 status = 0,
-                date = "24.10.24",
-                dayUntilFree = 7
+                date = "24.11.25",
+                dayUntilFree = 3
             ),
             EpisodeCard(
                 imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
@@ -102,7 +102,7 @@ class EpisodeViewModel @Inject constructor(
                 index = 3,
                 title = "왕vs왕",
                 status = 0,
-                date = "24.10.24",
+                date = "24.11.29",
                 dayUntilFree = 7
             ),
             EpisodeCard(
@@ -110,7 +110,7 @@ class EpisodeViewModel @Inject constructor(
                 index = 3,
                 title = "왕vs왕",
                 status = 0,
-                date = "24.10.24",
+                date = "24.11.29",
                 dayUntilFree = 7
             ),
             EpisodeCard(
@@ -142,7 +142,7 @@ class EpisodeViewModel @Inject constructor(
                 index = 3,
                 title = "될 것 같은데?",
                 status = 0,
-                date = "24.10.24",
+                date = "24.11.29",
                 dayUntilFree = 7
             ),
             EpisodeCard(
@@ -150,7 +150,7 @@ class EpisodeViewModel @Inject constructor(
                 index = 280,
                 title = "기능이 많아 도전해보자구요",
                 status = 0,
-                date = "24.10.24",
+                date = "24.11.29",
                 dayUntilFree = 7
             ),
             EpisodeCard(
@@ -182,7 +182,7 @@ class EpisodeViewModel @Inject constructor(
                 index = 3,
                 title = "왕 vs 왕",
                 status = 0,
-                date = "24.10.24",
+                date = "24.11.29",
                 dayUntilFree = 7
             ),
             EpisodeCard(
@@ -190,7 +190,7 @@ class EpisodeViewModel @Inject constructor(
                 index = 3,
                 title = "위로부적격자",
                 status = 0,
-                date = "24.10.24",
+                date = "24.11.29",
                 dayUntilFree = 7
             ),
             EpisodeCard(
@@ -222,7 +222,7 @@ class EpisodeViewModel @Inject constructor(
                 index = 3,
                 title = "예고",
                 status = 0,
-                date = "24.10.24",
+                date = "24.11.29",
                 dayUntilFree = 7
             )
         )

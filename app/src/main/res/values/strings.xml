@@ -45,5 +45,9 @@
     <string name="episode_list_view">리스트 뷰</string>
     <string name="episode_order">등록순</string>
     <string name="episode_card_title">%d화 %s</string>
+    <string name="episode_free_tag">무료</string>
+    <string name="episode_date_free">%d일 후 무료</string>
+    <string name="episode_go_top">맨 위로</string>
+
 
 </resources>

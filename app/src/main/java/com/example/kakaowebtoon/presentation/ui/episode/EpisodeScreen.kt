@@ -16,14 +16,22 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.kakaowebtoon.R
 import com.example.kakaowebtoon.domain.model.WebtoonDetail
 import com.example.kakaowebtoon.presentation.type.IndicatorType
 import com.example.kakaowebtoon.presentation.type.TopBarType
@@ -35,6 +43,7 @@ import com.example.kakaowebtoon.presentation.ui.episode.component.EpisodeRow
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonColors
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
+import kotlinx.coroutines.launch
 
 @Composable
 fun EpisodeRoute(
@@ -60,10 +69,14 @@ fun EpisodeScreen(
     val webtoonDetail by viewModel.webtoonDetail.collectAsState()
     val episodeDummyCards by viewModel.episodeDummyList.collectAsState()
 
+    val lazyListState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(KakaoWebtoonTheme.colors.black3)
+            .background(KakaoWebtoonTheme.colors.black3),
+        state = lazyListState
     ) {
         item {
             KakaoWebtoonTopBar(
@@ -110,6 +123,27 @@ fun EpisodeScreen(
                 repeat(3 - index.size) {
                     Spacer(modifier = Modifier.weight(1f))
                 }
+            }
+        }
+
+        item {
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                colors = ButtonDefaults.buttonColors(KakaoWebtoonTheme.colors.darkGrey6),
+                shape = RoundedCornerShape(6.dp),
+                onClick = {
+                    coroutineScope.launch {
+                        lazyListState.scrollToItem(0)
+                    }
+                }
+            ) {
+                Text(
+                    text = stringResource(R.string.episode_go_top),
+                    style = KakaoWebtoonTheme.typography.title4SemiBold,
+                    color = KakaoWebtoonTheme.colors.white
+                )
             }
         }
     }

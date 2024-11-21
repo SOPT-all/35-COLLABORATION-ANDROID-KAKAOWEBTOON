@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,18 +23,23 @@ import coil.compose.AsyncImage
 import com.example.kakaowebtoon.R
 import com.example.kakaowebtoon.domain.model.EpisodeCard
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun EpisodeDetailCard(
     card: EpisodeCard,
     modifier: Modifier = Modifier
 ) {
+    val whiteColor = KakaoWebtoonTheme.colors.white
+    val white50Color = KakaoWebtoonTheme.colors.white50
+
+    val today = LocalDate.now()
+    val cardDate = LocalDate.parse(card.date, DateTimeFormatter.ofPattern("yy.MM.dd"))
+
     Column(
         modifier = modifier
     ) {
-        val whiteColor = KakaoWebtoonTheme.colors.white
-        val white50Color = KakaoWebtoonTheme.colors.white50
-
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -47,7 +53,8 @@ fun EpisodeDetailCard(
                         } else {
                             1f
                         }
-                    )
+                    ),
+                contentScale = ContentScale.Crop
             )
 
             if (card.status in 1..10) {
@@ -69,6 +76,14 @@ fun EpisodeDetailCard(
                         cornerRadius = androidx.compose.ui.geometry.CornerRadius(10.dp.toPx())
                     )
                 }
+            }
+
+            if (cardDate.isBefore(today)) {
+                EpisodeFreeTag(
+                    modifier = Modifier
+                        .padding(start = 1.dp, top = 2.dp)
+                        .align(Alignment.TopStart)
+                )
             }
         }
 
@@ -100,7 +115,11 @@ fun EpisodeDetailCard(
             Spacer(Modifier.height(3.dp))
 
             Text(
-                text = card.date,
+                text = if(card.dayUntilFree !=0){
+                    stringResource(R.string.episode_date_free, card.dayUntilFree)
+                }else{
+                    card.date
+                },
                 style = KakaoWebtoonTheme.typography.body3Regular,
                 color = KakaoWebtoonTheme.colors.grey3,
                 modifier = Modifier.padding(start = 6.dp)
