@@ -9,11 +9,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.kakaowebtoon.domain.model.WebtoonDetail
 import com.example.kakaowebtoon.presentation.type.TopBarType
 import com.example.kakaowebtoon.presentation.ui.component.KakaoWebtoonTopBar
+import com.example.kakaowebtoon.presentation.ui.episode.component.EpisodeDetail
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonColors
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
@@ -38,6 +42,8 @@ fun EpisodeScreen(
     modifier: Modifier = Modifier,
     viewModel: EpisodeViewModel = hiltViewModel()
 ) {
+    val webtoonDetail by viewModel.webtoonDetail.collectAsState()
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -52,12 +58,18 @@ fun EpisodeScreen(
                     firstIconOnClick = popUpBackStack
                 )
             }
+
+            item {
+                webtoonDetail?.let { detail ->
+                    EpisodeDetail(detail)
+                }
+            }
         }
     }
 }
 
 @Preview
 @Composable
-private fun MainScreenPreview() {
+private fun EpisodeScreenPreview() {
     EpisodeScreen(popUpBackStack = {})
 }

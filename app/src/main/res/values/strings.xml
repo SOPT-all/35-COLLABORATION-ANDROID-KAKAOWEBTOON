@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Kakao Webtoon</string>
 
+    <!--    topbar item-->
     <string name="storage_title">보관함</string>
 
     <!--    bottom navigation bar item-->
@@ -32,8 +33,13 @@
     <string name="storage_button_sort">감상순</string>
     <string name="storage_button_edit">편집</string>
 
+
     <!--  Promotion -->
     <string name="webtoon_promotion_free">연재 무료</string>
     <string name="webtoon_promotion_free_later">3다무</string>
     <string name="webtoon_promotion_up">up</string>
+
+    <!--  Episode View -->
+    <string name="episode_coupon_count">이용권%s장</string>
+
 </resources>
