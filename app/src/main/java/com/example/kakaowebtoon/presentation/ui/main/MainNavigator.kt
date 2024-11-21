@@ -57,7 +57,7 @@ class MainNavigator(
         navController.navigateEpisode()
     }
 
-    fun popBackStack() {
+    private fun popBackStack() {
         navController.popBackStack()
     }
 
