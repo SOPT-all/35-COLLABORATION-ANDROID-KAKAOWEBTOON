@@ -21,11 +21,11 @@ fun EpisodeFreeTag(
         text = stringResource(R.string.episode_free_tag),
         style = KakaoWebtoonTheme.typography.caption4ExtraBold,
         color = KakaoWebtoonTheme.colors.black3,
-        modifier= modifier
+        modifier = modifier
             .background(
                 color = KakaoWebtoonTheme.colors.white,
                 shape = RoundedCornerShape(6.dp)
-                )
+            )
             .border(
                 width = 1.dp,
                 color = KakaoWebtoonTheme.colors.grey1,
@@ -37,6 +37,6 @@ fun EpisodeFreeTag(
 
 @Preview
 @Composable
-fun EpisodeFreeTagPreview(){
+fun EpisodeFreeTagPreview() {
     EpisodeFreeTag()
 }

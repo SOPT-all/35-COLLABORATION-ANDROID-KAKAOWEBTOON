@@ -3,8 +3,6 @@ package com.example.kakaowebtoon.presentation.ui.episode
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,13 +11,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.kakaowebtoon.R
-import com.example.kakaowebtoon.domain.model.WebtoonDetail
 import com.example.kakaowebtoon.presentation.type.IndicatorType
 import com.example.kakaowebtoon.presentation.type.TopBarType
 import com.example.kakaowebtoon.presentation.ui.component.KakaoWebtoonTopBar
@@ -40,9 +34,7 @@ import com.example.kakaowebtoon.presentation.ui.component.indicator.KakaoWebtoon
 import com.example.kakaowebtoon.presentation.ui.episode.component.EpisodeDetail
 import com.example.kakaowebtoon.presentation.ui.episode.component.EpisodeDetailCard
 import com.example.kakaowebtoon.presentation.ui.episode.component.EpisodeRow
-import com.example.kakaowebtoon.ui.theme.KakaoWebtoonColors
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 import kotlinx.coroutines.launch
 
 @Composable
@@ -101,7 +93,7 @@ fun EpisodeScreen(
 
         item {
             Spacer(Modifier.height(14.dp))
-            EpisodeRow(298)
+            EpisodeRow(episodeDummyCards.size)
             Spacer(Modifier.height(10.dp))
         }
 

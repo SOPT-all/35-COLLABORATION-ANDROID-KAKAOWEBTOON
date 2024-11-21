@@ -115,9 +115,9 @@ fun EpisodeDetailCard(
             Spacer(Modifier.height(3.dp))
 
             Text(
-                text = if(card.dayUntilFree !=0){
+                text = if (card.dayUntilFree != 0) {
                     stringResource(R.string.episode_date_free, card.dayUntilFree)
-                }else{
+                } else {
                     card.date
                 },
                 style = KakaoWebtoonTheme.typography.body3Regular,

@@ -2,7 +2,6 @@ package com.example.kakaowebtoon.presentation.ui.episode
 
 import androidx.lifecycle.ViewModel
 import com.example.kakaowebtoon.domain.model.EpisodeCard
-import com.example.kakaowebtoon.domain.model.WebtoonCard
 import com.example.kakaowebtoon.domain.model.WebtoonDetail
 import com.example.kakaowebtoon.domain.usecase.DummyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

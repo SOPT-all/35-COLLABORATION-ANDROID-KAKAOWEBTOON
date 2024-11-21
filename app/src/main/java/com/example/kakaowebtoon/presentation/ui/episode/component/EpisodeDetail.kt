@@ -39,10 +39,10 @@ fun EpisodeDetail(
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Box(
             modifier = Modifier.fillMaxWidth()
-        ){
+        ) {
             AsyncImage(
                 model = detail.imageUrl,
                 contentDescription = null,
@@ -64,7 +64,7 @@ fun EpisodeDetail(
                 }
                 Spacer(Modifier.height(4.dp))
 
-                KakaoWebtoonGenreTag(stringResource(R.string.episode_coupon_count,detail.coupon))
+                KakaoWebtoonGenreTag(stringResource(R.string.episode_coupon_count, detail.coupon))
             }
         }
         Spacer(Modifier.height(18.dp))

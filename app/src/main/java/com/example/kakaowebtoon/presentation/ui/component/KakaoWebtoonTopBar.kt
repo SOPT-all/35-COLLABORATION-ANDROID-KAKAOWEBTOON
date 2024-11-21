@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.presentation.type.TopBarType
 import com.example.kakaowebtoon.presentation.util.noRippleClickable
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 
 @Composable
 fun KakaoWebtoonTopBar(
@@ -70,7 +69,7 @@ fun KakaoWebtoonTopBar(
                 contentDescription = null,
                 modifier = Modifier
                     .padding(end = topBarType.thirdIconEndPadding),
-                tint = defaultKakaoWebtoonColors.white
+                tint = KakaoWebtoonTheme.colors.white
             )
         }
 

@@ -1,7 +1,5 @@
 package com.example.kakaowebtoon.domain.model
 
-import java.util.Date
-
 data class EpisodeCard(
     val imageUrl: String,
     val index: Int,
