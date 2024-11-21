@@ -2,6 +2,7 @@ package com.example.kakaowebtoon.presentation.ui.episode
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,6 +13,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,6 +30,7 @@ import com.example.kakaowebtoon.presentation.type.TopBarType
 import com.example.kakaowebtoon.presentation.ui.component.KakaoWebtoonTopBar
 import com.example.kakaowebtoon.presentation.ui.component.indicator.KakaoWebtoonIIndicator
 import com.example.kakaowebtoon.presentation.ui.episode.component.EpisodeDetail
+import com.example.kakaowebtoon.presentation.ui.episode.component.EpisodeDetailCard
 import com.example.kakaowebtoon.presentation.ui.episode.component.EpisodeRow
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonColors
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
@@ -53,39 +58,58 @@ fun EpisodeScreen(
     viewModel: EpisodeViewModel = hiltViewModel()
 ) {
     val webtoonDetail by viewModel.webtoonDetail.collectAsState()
+    val episodeDummyCards by viewModel.episodeDummyList.collectAsState()
 
-    Box(
+    LazyColumn(
         modifier = modifier
             .fillMaxSize()
             .background(KakaoWebtoonTheme.colors.black3)
     ) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            item {
-                KakaoWebtoonTopBar(
-                    topBarType = TopBarType.Episode,
-                    firstIconOnClick = popUpBackStack
-                )
-            }
+        item {
+            KakaoWebtoonTopBar(
+                topBarType = TopBarType.Episode,
+                firstIconOnClick = popUpBackStack
+            )
+        }
 
-            item {
-                webtoonDetail?.let { detail ->
-                    EpisodeDetail(detail)
+        item {
+            webtoonDetail?.let { detail ->
+                EpisodeDetail(detail)
+            }
+            Spacer(Modifier.height(20.dp))
+        }
+
+        stickyHeader {
+            KakaoWebtoonIIndicator(
+                modifier = Modifier.padding(horizontal = 93.dp),
+                indicatorType = IndicatorType.Episode
+            )
+        }
+
+        item {
+            Spacer(Modifier.height(14.dp))
+            EpisodeRow(298)
+            Spacer(Modifier.height(10.dp))
+        }
+
+        items(episodeDummyCards.chunked(3)) { index ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 10.dp),
+                horizontalArrangement = Arrangement.spacedBy(1.dp)
+            ) {
+                for (card in index) {
+                    EpisodeDetailCard(
+                        card = card,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
                 }
-                Spacer(Modifier.height(20.dp))
-            }
 
-            stickyHeader {
-                KakaoWebtoonIIndicator(
-                    modifier = Modifier.padding(horizontal = 93.dp),
-                    indicatorType = IndicatorType.Episode
-                )
-            }
-
-            item {
-                Spacer(Modifier.height(14.dp))
-                EpisodeRow(298)
+                repeat(3 - index.size) {
+                    Spacer(modifier = Modifier.weight(1f))
+                }
             }
         }
     }

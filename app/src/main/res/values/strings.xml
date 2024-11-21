@@ -40,9 +40,10 @@
     <string name="webtoon_promotion_up">up</string>
 
     <!--  Episode View -->
-    <string name="episode_coupon_count">이용권%s장</string>
-    <string name="episode_total_count">전체 %s</string>
+    <string name="episode_coupon_count">이용권%d장</string>
+    <string name="episode_total_count">전체 %d</string>
     <string name="episode_list_view">리스트 뷰</string>
     <string name="episode_order">등록순</string>
+    <string name="episode_card_title">%d화 %s</string>
 
 </resources>

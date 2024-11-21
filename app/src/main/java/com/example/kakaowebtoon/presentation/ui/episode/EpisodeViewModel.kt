@@ -1,6 +1,8 @@
 package com.example.kakaowebtoon.presentation.ui.episode
 
 import androidx.lifecycle.ViewModel
+import com.example.kakaowebtoon.domain.model.EpisodeCard
+import com.example.kakaowebtoon.domain.model.WebtoonCard
 import com.example.kakaowebtoon.domain.model.WebtoonDetail
 import com.example.kakaowebtoon.domain.usecase.DummyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,12 +13,16 @@ import javax.inject.Inject
 @HiltViewModel
 class EpisodeViewModel @Inject constructor(
     private val dummyUseCase: DummyUseCase
-) : ViewModel(){
+) : ViewModel() {
     private val _webtoonDetail = MutableStateFlow<WebtoonDetail?>(null)
     val webtoonDetail: StateFlow<WebtoonDetail?> = _webtoonDetail
 
+    private val _episodeDummyList = MutableStateFlow<List<EpisodeCard>>(emptyList())
+    val episodeDummyList: StateFlow<List<EpisodeCard>> = _episodeDummyList
+
     init {
         loadDummyWebtoonDetail()
+        loadDummyEpisodeCards()
     }
 
     private fun loadDummyWebtoonDetail() {
@@ -31,5 +37,195 @@ class EpisodeViewModel @Inject constructor(
             promotion = "연재 무료"
         )
         _webtoonDetail.value = dummyDetail
+    }
+
+    private fun loadDummyEpisodeCards() {
+        val dummyEpisodes = listOf(
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
+                index = 0,
+                title = "예고",
+                status = 10,
+                date = "24.10.03",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
+                index = 1,
+                title = "선언금지",
+                status = 7,
+                date = "24.10.10",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
+                index = 2,
+                title = "신문물",
+                status = 3,
+                date = "24.10.17",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
+                index = 3,
+                title = "선언금지",
+                status = 0,
+                date = "24.10.24",
+                dayUntilFree = 7
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
+                index = 0,
+                title = "예고",
+                status = 10,
+                date = "24.10.03",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
+                index = 1,
+                title = "선언금지",
+                status = 7,
+                date = "24.10.10",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
+                index = 2,
+                title = "소원",
+                status = 3,
+                date = "24.10.17",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
+                index = 3,
+                title = "왕vs왕",
+                status = 0,
+                date = "24.10.24",
+                dayUntilFree = 7
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
+                index = 3,
+                title = "왕vs왕",
+                status = 0,
+                date = "24.10.24",
+                dayUntilFree = 7
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
+                index = 0,
+                title = "예고",
+                status = 10,
+                date = "24.10.03",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
+                index = 1,
+                title = "선언금지",
+                status = 7,
+                date = "24.10.10",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
+                index = 2,
+                title = "내 동생",
+                status = 3,
+                date = "24.10.17",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
+                index = 3,
+                title = "될 것 같은데?",
+                status = 0,
+                date = "24.10.24",
+                dayUntilFree = 7
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
+                index = 280,
+                title = "기능이 많아 도전해보자구요",
+                status = 0,
+                date = "24.10.24",
+                dayUntilFree = 7
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
+                index = 0,
+                title = "예고",
+                status = 10,
+                date = "24.10.03",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
+                index = 1,
+                title = "선언금지",
+                status = 7,
+                date = "24.10.10",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
+                index = 2,
+                title = "소원",
+                status = 3,
+                date = "24.10.17",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
+                index = 3,
+                title = "왕 vs 왕",
+                status = 0,
+                date = "24.10.24",
+                dayUntilFree = 7
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
+                index = 3,
+                title = "위로부적격자",
+                status = 0,
+                date = "24.10.24",
+                dayUntilFree = 7
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
+                index = 0,
+                title = "예고",
+                status = 10,
+                date = "24.10.03",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
+                index = 1,
+                title = "선언금지",
+                status = 7,
+                date = "24.10.10",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
+                index = 2,
+                title = "예고",
+                status = 3,
+                date = "24.10.17",
+                dayUntilFree = 0
+            ),
+            EpisodeCard(
+                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
+                index = 3,
+                title = "예고",
+                status = 0,
+                date = "24.10.24",
+                dayUntilFree = 7
+            )
+        )
+        _episodeDummyList.value = dummyEpisodes
     }
 }
