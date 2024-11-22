@@ -44,7 +44,7 @@ fun HomeBanner(
         )
         Image(
             painter = painterResource(R.drawable.img_home_banner_character),
-            contentDescription = stringResource(R.string.home_banner),
+            contentDescription = stringResource(R.string.home_banner)
         )
         HomeBannerButton(
             // TODO: 추후 Banner 관련 기능 디벨롭 시 구현
