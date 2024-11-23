@@ -16,11 +16,10 @@ fun HomeCardView(
     modifier: Modifier = Modifier
 ) {
     AsyncImage(
-        modifier = modifier
-            .clip(RoundedCornerShape(8.dp)),
+        modifier = modifier.clip(RoundedCornerShape(8.dp)),
         model = imageUrl,
         contentDescription = null,
-        contentScale = ContentScale.Crop
+        contentScale = ContentScale.Fit
     )
 }
 

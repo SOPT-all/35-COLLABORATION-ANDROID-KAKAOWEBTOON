@@ -29,9 +29,9 @@ class HomeViewModel @Inject constructor(
 
     private val dummyWebtoonList = listOf(
         "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
         "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png"
+//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
+//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
 //        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
 //        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
 //        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
@@ -50,6 +50,7 @@ class HomeViewModel @Inject constructor(
         getToday()
     }
 
+    // _selectedDay의 초기 값을 그냥 오늘로 박기 vs 함수 호출
     private fun getToday() {
         val formatter = DateTimeFormatter.ofPattern("EEE", Locale.ENGLISH)
         _selectedDay.update {
@@ -57,8 +58,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getWebtoonList() {
+    fun getWebtoonList(day: String) {
         _webtoonList.update {
+            // useCase
             dummyWebtoonList
         }
     }

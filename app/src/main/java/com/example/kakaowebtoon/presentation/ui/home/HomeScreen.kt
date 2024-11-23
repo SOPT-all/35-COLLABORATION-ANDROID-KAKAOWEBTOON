@@ -9,9 +9,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -51,11 +54,12 @@ fun HomeRoute(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val webtoonList by viewModel.webtoonList.collectAsStateWithLifecycle()
+    val selectedDay by viewModel.selectedDay.collectAsStateWithLifecycle()
 
     // TODO: API 연동 필요
     LaunchedEffect(webtoonList) {
         if (webtoonList.isEmpty()) {
-            viewModel.getWebtoonList()
+            viewModel.getWebtoonList(selectedDay)
         }
     }
 
@@ -73,8 +77,10 @@ fun HomeScreen(
     onNavigateToSearch: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val state = rememberLazyListState()
     LazyColumn(
-        modifier = modifier
+        modifier = modifier,
+        state = state
     ) {
         item {
             KakaoWebtoonTopBar(TopBarType.Home)
@@ -107,7 +113,7 @@ fun HomeScreen(
                 ) {
                     Text(
                         modifier = Modifier.padding(vertical = 3.5.dp, horizontal = 4.dp),
-                        text = stringResource(R.string.home_content_total_count, 28),
+                        text = stringResource(R.string.home_content_total_count, webtoonList.size),
                         style = KakaoWebtoonTheme.typography.body6Regular,
                         color = KakaoWebtoonTheme.colors.white
                     )
@@ -126,6 +132,7 @@ fun HomeScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .wrapContentHeight()
                     .padding(horizontal = 10.dp)
                     .padding(
                         bottom = if (index == webtoonList.chunked(3).lastIndex) 4.dp else 2.dp
@@ -141,7 +148,9 @@ fun HomeScreen(
                 }
                 repeat(3 - urlChunk.size) {
                     HomeCardEmptyView(
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(260.dp)
                     )
                 }
             }
