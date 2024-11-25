@@ -24,11 +24,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.kakaowebtoon.R
+import com.example.kakaowebtoon.domain.model.WebtoonCard
 import com.example.kakaowebtoon.presentation.ui.component.card.KakaoWebtoonCard
 import com.example.kakaowebtoon.presentation.ui.search.component.SearchTextField
 import com.example.kakaowebtoon.presentation.ui.search.component.SearchViewIndicator
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
+
 
 @Composable
 fun SearchRoute(
@@ -37,10 +38,17 @@ fun SearchRoute(
     modifier: Modifier = Modifier,
     viewModel: SearchViewModel = hiltViewModel()
 ) {
+    val webtoonCards by viewModel.webtoonSearchList.collectAsState()
+    val webtoonDummyCards by viewModel.webtoonDummyList.collectAsState()
+    val searchText by viewModel.searchText.collectAsState()
+
     SearchScreen(
         modifier = modifier.padding(padding),
         popUpBackStack = popUpBackStack,
-        viewModel = viewModel
+        webtoonCards = webtoonCards,
+        webtoonDummyCards = webtoonDummyCards,
+        searchText = searchText,
+        onSearchTextChange = viewModel::updateSearchText
     )
 }
 
@@ -48,21 +56,21 @@ fun SearchRoute(
 fun SearchScreen(
     popUpBackStack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: SearchViewModel = hiltViewModel()
+    webtoonCards: List<WebtoonCard>,
+    webtoonDummyCards: List<WebtoonCard>,
+    searchText: String,
+    onSearchTextChange: (String) -> Unit
 ) {
-    val webtoonCards by viewModel.webtoonSearchList.collectAsState()
-    val webtoonDummyCards by viewModel.webtoonDummyList.collectAsState()
-    val searchText by viewModel.searchText.collectAsState()
 
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(color = defaultKakaoWebtoonColors.black3)
+            .background(color = KakaoWebtoonTheme.colors.black3)
     ) {
         Spacer(modifier = Modifier.height(30.dp))
         SearchTextField(
             value = searchText,
-            onValueChange = { viewModel.updateSearchText(it) },
+            onValueChange = onSearchTextChange,
             placeholder = stringResource(R.string.search_text_field_placeholder),
             popUpBackStack = popUpBackStack
         )
@@ -81,18 +89,18 @@ fun SearchScreen(
                 ) {
                     Text(
                         text = stringResource(R.string.search_first_webtoon_list),
-                        style = defaultKakaoWebtoonTypography.body1Regular,
-                        color = defaultKakaoWebtoonColors.white
+                        style = KakaoWebtoonTheme.typography.body1Regular,
+                        color = KakaoWebtoonTheme.colors.white
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     Text(
                         text = stringResource(R.string.search_filtering_popularity),
-                        style = defaultKakaoWebtoonTypography.body1Regular,
-                        color = defaultKakaoWebtoonColors.white
+                        style = KakaoWebtoonTheme.typography.body1Regular,
+                        color = KakaoWebtoonTheme.colors.white
                     )
                     Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.ic_search_arrow_under_white_18),
-                        tint = defaultKakaoWebtoonColors.white,
+                        tint = KakaoWebtoonTheme.colors.white,
                         contentDescription = stringResource(R.string.search_under_arrow_icon_description)
                     )
                 }
@@ -110,8 +118,8 @@ fun SearchScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = stringResource(R.string.search_recommend_webtoon_list),
-                    style = defaultKakaoWebtoonTypography.body1Regular,
-                    color = defaultKakaoWebtoonColors.white
+                    style = KakaoWebtoonTheme.typography.body1Regular,
+                    color = KakaoWebtoonTheme.colors.white
                 )
                 Spacer(modifier = Modifier.height(13.dp))
             }
@@ -126,6 +134,6 @@ fun SearchScreen(
 
 @Preview
 @Composable
-private fun MainScreenPreview() {
-    SearchScreen(popUpBackStack = {})
+private fun SearchScreenPreview() {
+//    SearchScreen(popUpBackStack = {})
 }

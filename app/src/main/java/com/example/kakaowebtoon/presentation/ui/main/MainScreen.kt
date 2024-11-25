@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.kakaowebtoon.presentation.type.MainBottomNavType
 import com.example.kakaowebtoon.presentation.ui.main.component.MainBottomNavBar
 import com.example.kakaowebtoon.presentation.ui.main.component.MainNavHost
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
@@ -17,7 +17,7 @@ fun MainScreen(
 ) {
     Scaffold(
         modifier = Modifier,
-        containerColor = defaultKakaoWebtoonColors.black3,
+        containerColor = KakaoWebtoonTheme.colors.black3,
         bottomBar = {
             MainBottomNavBar(
                 modifier = Modifier.navigationBarsPadding(),
