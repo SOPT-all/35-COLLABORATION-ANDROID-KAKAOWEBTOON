@@ -1,7 +1,9 @@
 package com.example.kakaowebtoon.di
 
 import com.example.kakaowebtoon.data.repositoryimpl.DummyRepositoryImpl
+import com.example.kakaowebtoon.data.repositoryimpl.WebtoonsRepositoryImpl
 import com.example.kakaowebtoon.domain.repository.DummyRepository
+import com.example.kakaowebtoon.domain.repository.WebtoonsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,4 +16,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindDummyRepository(dummyRepositoryImpl: DummyRepositoryImpl): DummyRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindWebtoonsRepository(webtoonsRepositoryImpl: WebtoonsRepositoryImpl): WebtoonsRepository
 }
