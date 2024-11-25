@@ -30,7 +30,6 @@ import com.example.kakaowebtoon.presentation.ui.search.component.SearchTextField
 import com.example.kakaowebtoon.presentation.ui.search.component.SearchViewIndicator
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
-
 @Composable
 fun SearchRoute(
     padding: PaddingValues,
@@ -61,7 +60,6 @@ fun SearchScreen(
     searchText: String,
     onSearchTextChange: (String) -> Unit
 ) {
-
     Column(
         modifier = modifier
             .fillMaxSize()
