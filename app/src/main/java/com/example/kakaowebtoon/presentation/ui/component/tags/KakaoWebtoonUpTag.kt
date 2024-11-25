@@ -8,17 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
 fun KakaoWebtoonUpTag(modifier: Modifier = Modifier) {
     Text(
         text = "UP",
-        style = defaultKakaoWebtoonTypography.caption4ExtraBold,
-        color = defaultKakaoWebtoonColors.white,
+        style = KakaoWebtoonTheme.typography.caption4ExtraBold,
+        color = KakaoWebtoonTheme.colors.white,
         modifier = modifier
-            .background(color = defaultKakaoWebtoonColors.red, shape = RoundedCornerShape(5.dp))
+            .background(color = KakaoWebtoonTheme.colors.red, shape = RoundedCornerShape(5.dp))
             .padding(2.dp)
     )
 }

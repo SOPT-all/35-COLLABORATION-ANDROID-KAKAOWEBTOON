@@ -15,29 +15,28 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.R
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
 fun KakaoWebtoonFreeLaterTag(modifier: Modifier = Modifier) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
         Image(
             imageVector = ImageVector.vectorResource(R.drawable.ic_chip_clock),
             contentDescription = null,
-            modifier = modifier
+            modifier = Modifier
                 .background(
-                    color = defaultKakaoWebtoonColors.yellow2,
+                    color = KakaoWebtoonTheme.colors.yellow2,
                     shape = RoundedCornerShape(topStart = 5.dp, bottomStart = 5.dp)
                 )
                 .padding(2.dp)
         )
         Text(
             text = "3다무",
-            style = defaultKakaoWebtoonTypography.caption4ExtraBold,
-            color = defaultKakaoWebtoonColors.black4,
-            modifier = modifier
+            style = KakaoWebtoonTheme.typography.caption4ExtraBold,
+            color = KakaoWebtoonTheme.colors.black4,
+            modifier = Modifier
                 .background(
-                    color = defaultKakaoWebtoonColors.white,
+                    color = KakaoWebtoonTheme.colors.white,
                     shape = RoundedCornerShape(topEnd = 5.dp, bottomEnd = 5.dp)
                 )
                 .padding(vertical = 1.dp, horizontal = 3.dp)

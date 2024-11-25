@@ -11,20 +11,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
 fun KakaoWebtoonGenreTag(genre: String, modifier: Modifier = Modifier) {
     Text(
         text = genre,
-        color = defaultKakaoWebtoonColors.white,
-        style = defaultKakaoWebtoonTypography.caption4ExtraBold,
+        color = KakaoWebtoonTheme.colors.white,
+        style = KakaoWebtoonTheme.typography.caption4ExtraBold,
         modifier = modifier
-            .background(color = defaultKakaoWebtoonColors.black4, shape = RoundedCornerShape(5.dp))
+            .background(color = KakaoWebtoonTheme.colors.black4, shape = RoundedCornerShape(5.dp))
             .border(
                 width = 1.dp,
-                color = defaultKakaoWebtoonColors.grey4,
+                color = KakaoWebtoonTheme.colors.grey4,
                 shape = RoundedCornerShape(5.dp)
             )
             .padding(vertical = 2.dp, horizontal = 4.dp)

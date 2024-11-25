@@ -11,7 +11,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.R
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
 fun KakaoWebtoonClockTag(modifier: Modifier = Modifier) {
@@ -19,7 +19,7 @@ fun KakaoWebtoonClockTag(modifier: Modifier = Modifier) {
         imageVector = ImageVector.vectorResource(id = R.drawable.ic_chip_clock),
         contentDescription = null,
         modifier = modifier
-            .background(color = defaultKakaoWebtoonColors.yellow2, shape = RoundedCornerShape(5.dp))
+            .background(color = KakaoWebtoonTheme.colors.yellow2, shape = RoundedCornerShape(5.dp))
             .padding(2.dp)
     )
 }
