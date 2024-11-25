@@ -7,6 +7,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.domain.model.EpisodeViewIndicatorContents
 import com.example.kakaowebtoon.domain.model.MainViewIndicatorContents
+import com.example.kakaowebtoon.domain.model.SearchViewIndicatorContents
 import com.example.kakaowebtoon.domain.model.StorageViewIndicatorContents
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
@@ -15,7 +16,6 @@ import kotlinx.collections.immutable.persistentListOf
 enum class IndicatorType(
     val contentsList: List<String>,
     val typoStyle: TextStyle,
-    val spaceBy: Dp,
     val spacerHeight: Dp = 4.dp,
     @ColorRes val indicatorColor: Color = defaultKakaoWebtoonColors.yellow1,
     @ColorRes val selectedFontColor: Color = defaultKakaoWebtoonColors.white,
@@ -34,7 +34,6 @@ enum class IndicatorType(
             MainViewIndicatorContents.COMPLETE.contents
         ),
         typoStyle = defaultKakaoWebtoonTypography.body2Regular,
-        spaceBy = 4.dp,
         selectedFontColor = defaultKakaoWebtoonColors.yellow1,
         unSelectedFontColor = defaultKakaoWebtoonColors.grey5
     ),
@@ -46,7 +45,6 @@ enum class IndicatorType(
             EpisodeViewIndicatorContents.COMMENTS.contents
         ),
         typoStyle = defaultKakaoWebtoonTypography.title4SemiBold,
-        spaceBy = 25.dp,
         indicatorColor = defaultKakaoWebtoonColors.yellow2,
         selectedFontColor = defaultKakaoWebtoonColors.yellow2,
         unSelectedFontColor = defaultKakaoWebtoonColors.grey3
@@ -60,9 +58,20 @@ enum class IndicatorType(
             StorageViewIndicatorContents.COMMENTS.contents
         ),
         typoStyle = defaultKakaoWebtoonTypography.body2Regular,
-        spaceBy = 18.dp,
         spacerHeight = 0.dp,
         indicatorColor = defaultKakaoWebtoonColors.yellow2,
         selectedFontColor = defaultKakaoWebtoonColors.white
+    ),
+    Search(
+        contentsList = persistentListOf(
+            SearchViewIndicatorContents.ALL.contents,
+            SearchViewIndicatorContents.FREE.contents,
+            SearchViewIndicatorContents.FREE_LATER.contents
+        ),
+        typoStyle = defaultKakaoWebtoonTypography.title2SemiBold,
+        spacerHeight = 11.dp,
+        indicatorColor = defaultKakaoWebtoonColors.yellow2,
+        selectedFontColor = defaultKakaoWebtoonColors.white,
+        unSelectedFontColor = defaultKakaoWebtoonColors.grey4
     )
 }

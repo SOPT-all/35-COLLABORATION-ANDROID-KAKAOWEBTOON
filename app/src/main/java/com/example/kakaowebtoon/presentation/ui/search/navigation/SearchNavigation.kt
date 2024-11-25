@@ -5,18 +5,20 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.kakaowebtoon.presentation.model.Route
+import com.example.kakaowebtoon.presentation.ui.search.SearchRoute
 
 fun NavController.navigateSearch() {
     navigate(route = Route.Search)
 }
 
 fun NavGraphBuilder.searchNavGraph(
-    padding: PaddingValues
+    padding: PaddingValues,
+    popUpBackStack: () -> Unit
 ) {
     composable<Route.Search> {
-//        TODO: Route 마무리
-//        SearchRoute(
-//            padding = padding
-//        )
+        SearchRoute(
+            padding = padding,
+            popUpBackStack = popUpBackStack
+        )
     }
 }

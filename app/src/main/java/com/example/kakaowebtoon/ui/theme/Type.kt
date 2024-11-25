@@ -38,7 +38,7 @@ data class KakaoTypography(
     val caption1Bold: TextStyle,
     val caption2Medium: TextStyle,
     val caption3Light: TextStyle,
-    val caption4SemiBold: TextStyle
+    val caption4ExtraBold: TextStyle
 )
 
 val defaultKakaoWebtoonTypography = KakaoTypography(
@@ -154,9 +154,9 @@ val defaultKakaoWebtoonTypography = KakaoTypography(
         lineHeight = (12).sp,
         letterSpacing = (-0.1).sp
     ),
-    caption4SemiBold = TextStyle(
+    caption4ExtraBold = TextStyle(
         fontFamily = FontFamily(Font(R.font.roboto_bold)),
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.ExtraBold,
         fontSize = 8.sp,
         lineHeight = (12).sp,
         letterSpacing = (-0.1).sp
