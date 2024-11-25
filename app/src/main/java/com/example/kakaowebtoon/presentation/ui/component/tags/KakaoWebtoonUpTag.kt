@@ -10,7 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
-
 @Composable
 fun KakaoWebtoonUpTag(modifier: Modifier = Modifier) {
     Text(
