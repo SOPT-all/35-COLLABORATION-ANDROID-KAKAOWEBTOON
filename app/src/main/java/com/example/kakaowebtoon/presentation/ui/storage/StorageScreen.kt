@@ -28,7 +28,7 @@ import com.example.kakaowebtoon.presentation.ui.component.KakaoWebtoonTopBar
 import com.example.kakaowebtoon.presentation.ui.component.card.KakaoWebtoonCard
 import com.example.kakaowebtoon.presentation.ui.component.indicator.KakaoWebtoonIIndicator
 import com.example.kakaowebtoon.presentation.ui.storage.component.StorageButton
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
 fun StorageRoute(
@@ -56,7 +56,7 @@ fun StorageScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(defaultKakaoWebtoonColors.black3)
+            .background(KakaoWebtoonTheme.colors.black3)
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize()
@@ -70,7 +70,7 @@ fun StorageScreen(
             stickyHeader {
                 Column(
                     modifier = Modifier
-                        .background(defaultKakaoWebtoonColors.black3)
+                        .background(KakaoWebtoonTheme.colors.black3)
                         .padding(top = 5.dp, bottom = 10.dp)
                 ) {
                     KakaoWebtoonIIndicator(
