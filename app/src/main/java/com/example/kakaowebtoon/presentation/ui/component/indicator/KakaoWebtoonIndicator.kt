@@ -16,8 +16,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,10 +29,10 @@ import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 @Composable
 fun KakaoWebtoonIIndicator(
     indicatorType: IndicatorType,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    selectedIndex: Int = 0,
+    onIndexSelected: (Int) -> Unit = { }
 ) {
-    var selectedIndex by remember { mutableIntStateOf(0) }
-
     Row(
         modifier = modifier
             .fillMaxWidth(),
@@ -49,7 +47,7 @@ fun KakaoWebtoonIIndicator(
                     .width(IntrinsicSize.Max)
                     .padding(horizontal = 7.dp, vertical = 4.dp)
                     .noRippleClickable {
-                        selectedIndex = index
+                        onIndexSelected(index)
                     }
             ) {
                 Text(

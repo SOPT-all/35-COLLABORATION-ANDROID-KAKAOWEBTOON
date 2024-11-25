@@ -2,6 +2,7 @@ package com.example.kakaowebtoon.presentation.ui.home
 
 import androidx.lifecycle.ViewModel
 import com.example.kakaowebtoon.domain.usecase.DummyUseCase
+import com.example.kakaowebtoon.presentation.type.HomeDayType
 import com.example.kakaowebtoon.presentation.type.HomeGenreType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,11 +20,9 @@ class HomeViewModel @Inject constructor(
     private val _webtoonList = MutableStateFlow(emptyList<String>())
     val webtoonList = _webtoonList.asStateFlow()
 
-    // TODO: KakaoWebtoonIndicator 일부 수정 필요하여 논의 후 반영
-    private val _selectedDay = MutableStateFlow("")
+    private val _selectedDay = MutableStateFlow(0)
     val selectedDay = _selectedDay.asStateFlow()
 
-    // TODO: 추후 API에서 장르 값이 함께 넘어올 시 사용될 예정 (for filtering)
     private val _selectedGenreType = MutableStateFlow(HomeGenreType.ALL)
     val selectedGenreType = _selectedGenreType.asStateFlow()
 
@@ -50,18 +49,25 @@ class HomeViewModel @Inject constructor(
         getToday()
     }
 
-    // _selectedDay의 초기 값을 그냥 오늘로 박기 vs 함수 호출
     private fun getToday() {
         val formatter = DateTimeFormatter.ofPattern("EEE", Locale.ENGLISH)
-        _selectedDay.update {
-            LocalDate.now().format(formatter).lowercase(Locale.ENGLISH)
-        }
+        val localDay = LocalDate.now().format(formatter).lowercase(Locale.ENGLISH)
+        val today = HomeDayType.entries.indexOfFirst { it.day == localDay } + 1
+        _selectedDay.update { today }
     }
 
-    fun getWebtoonList(day: String) {
+    fun getWebtoonList(dayIndex: Int) {
         _webtoonList.update {
             // useCase
             dummyWebtoonList
         }
+    }
+
+    fun onSelectGenreTab(genreType: HomeGenreType) {
+        _selectedGenreType.update { genreType }
+    }
+
+    fun onSelectDayTab(index: Int) {
+        _selectedDay.update { index }
     }
 }

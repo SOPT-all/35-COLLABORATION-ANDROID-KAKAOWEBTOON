@@ -19,8 +19,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,10 +33,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.kakaowebtoon.R
+import com.example.kakaowebtoon.domain.util.HomeFilter
+import com.example.kakaowebtoon.presentation.type.HomeGenreType
 import com.example.kakaowebtoon.presentation.type.IndicatorType
 import com.example.kakaowebtoon.presentation.type.TopBarType
-import com.example.kakaowebtoon.presentation.ui.component.KakaoWebtoonIIndicator
 import com.example.kakaowebtoon.presentation.ui.component.KakaoWebtoonTopBar
+import com.example.kakaowebtoon.presentation.ui.component.indicator.KakaoWebtoonIIndicator
 import com.example.kakaowebtoon.presentation.ui.home.component.HomeBanner
 import com.example.kakaowebtoon.presentation.ui.home.component.HomeCardEmptyView
 import com.example.kakaowebtoon.presentation.ui.home.component.HomeCardView
@@ -39,12 +46,6 @@ import com.example.kakaowebtoon.presentation.ui.home.component.HomeFilterTextBut
 import com.example.kakaowebtoon.presentation.ui.home.component.HomeFooter
 import com.example.kakaowebtoon.presentation.ui.home.component.HomeGenreTabRow
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
-
-// TODO: merge 후 Constraints.kt 파일에 추가 예정
-object HomeFilter {
-    const val POPULAR = "인기순"
-    const val ALL = "전체"
-}
 
 @Composable
 fun HomeRoute(
@@ -55,8 +56,8 @@ fun HomeRoute(
 ) {
     val webtoonList by viewModel.webtoonList.collectAsStateWithLifecycle()
     val selectedDay by viewModel.selectedDay.collectAsStateWithLifecycle()
+    val selectedGenreType by viewModel.selectedGenreType.collectAsStateWithLifecycle()
 
-    // TODO: API 연동 필요
     LaunchedEffect(webtoonList) {
         if (webtoonList.isEmpty()) {
             viewModel.getWebtoonList(selectedDay)
@@ -65,8 +66,12 @@ fun HomeRoute(
 
     HomeScreen(
         webtoonList = webtoonList,
-        modifier = modifier.padding(padding),
-        onNavigateToSearch = onNavigateToSearch
+        selectedGenreType = selectedGenreType,
+        onSelectGenreType = viewModel::onSelectGenreTab,
+        selectedDay = selectedDay,
+        onSelectedDay = viewModel::onSelectDayTab,
+        onNavigateToSearch = onNavigateToSearch,
+        modifier = modifier.padding(padding)
     )
 }
 
@@ -74,16 +79,26 @@ fun HomeRoute(
 @Composable
 fun HomeScreen(
     webtoonList: List<String>,
+    selectedGenreType: HomeGenreType,
+    onSelectGenreType: (HomeGenreType) -> Unit,
+    selectedDay: Int,
+    onSelectedDay: (Int) -> Unit,
     onNavigateToSearch: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val state = rememberLazyListState()
+    var homeCardHeight by remember { mutableStateOf(0) }
+
     LazyColumn(
         modifier = modifier,
         state = state
     ) {
         item {
-            KakaoWebtoonTopBar(TopBarType.Home)
+            Spacer(modifier = Modifier.height(24.dp))
+            KakaoWebtoonTopBar(
+                topBarType = TopBarType.Home,
+                secondIconOnClick = onNavigateToSearch
+            )
             HomeBanner(
                 onBannerClick = {
                     // TODO: Banner 클릭 (추후) 추가
@@ -97,18 +112,24 @@ fun HomeScreen(
                     .fillMaxWidth()
                     .background(KakaoWebtoonTheme.colors.black3)
             ) {
+                Spacer(modifier = Modifier.height(8.dp))
                 KakaoWebtoonIIndicator(
-                    modifier = Modifier.padding(top = 8.dp),
+                    modifier = Modifier.padding(horizontal = 47.dp),
+                    selectedIndex = selectedDay,
+                    onIndexSelected = onSelectedDay,
                     indicatorType = IndicatorType.MAIN
                 )
                 HomeGenreTabRow(
-                    modifier = Modifier.padding(bottom = 7.dp)
+                    modifier = Modifier.fillMaxWidth(),
+                    genreList = HomeGenreType.entries,
+                    selectedGenre = selectedGenreType,
+                    onTabClick = onSelectGenreType
                 )
+                Spacer(modifier = Modifier.height(7.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 10.dp)
-                        .padding(bottom = 8.dp),
+                        .padding(horizontal = 10.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
@@ -121,6 +142,7 @@ fun HomeScreen(
                     HomeFilterTextButton(HomeFilter.POPULAR)
                     HomeFilterTextButton(HomeFilter.ALL)
                 }
+                Spacer(modifier = Modifier.height(8.dp))
             }
         }
 
@@ -142,7 +164,11 @@ fun HomeScreen(
             ) {
                 urlChunk.forEach { url ->
                     HomeCardView(
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .onGloballyPositioned {
+                                homeCardHeight = it.size.height
+                            },
                         imageUrl = url
                     )
                 }
@@ -150,26 +176,30 @@ fun HomeScreen(
                     HomeCardEmptyView(
                         modifier = Modifier
                             .weight(1f)
-                            .height(260.dp)
+                            .height(
+                                with(LocalDensity.current) {
+                                    homeCardHeight.toDp()
+                                }
+                            )
                     )
                 }
             }
         }
 
         item {
+            Spacer(modifier = Modifier.height(4.dp))
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 4.dp)
                     .padding(horizontal = 10.dp),
                 painter = painterResource(id = R.drawable.img_home_ad),
                 contentDescription = null
             )
+            Spacer(modifier = Modifier.height(48.dp))
             HomeFooter(
-                modifier = Modifier
-                    .padding(top = 48.dp, bottom = 64.dp)
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(64.dp))
         }
     }
 }
