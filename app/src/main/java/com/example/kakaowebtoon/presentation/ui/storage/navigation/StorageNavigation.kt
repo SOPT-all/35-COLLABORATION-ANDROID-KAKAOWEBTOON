@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.example.kakaowebtoon.presentation.model.Route
+import com.example.kakaowebtoon.presentation.ui.storage.StorageRoute
 
 fun NavController.navigateStorage(navOptions: NavOptions) {
     navigate(
@@ -15,12 +16,14 @@ fun NavController.navigateStorage(navOptions: NavOptions) {
 }
 
 fun NavGraphBuilder.storageNavGraph(
-    padding: PaddingValues
+    padding: PaddingValues,
+    onNavigateToSearch: () -> Unit
+
 ) {
     composable<Route.Storage> {
-//        TODO: Route 마무리
-//        StorageRoute(
-//            padding = padding
-//        )
+        StorageRoute(
+            padding = padding,
+            onNavigateToSearch = onNavigateToSearch
+        )
     }
 }

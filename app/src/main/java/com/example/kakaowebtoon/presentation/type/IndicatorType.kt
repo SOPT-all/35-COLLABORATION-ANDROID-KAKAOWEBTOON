@@ -16,7 +16,6 @@ import kotlinx.collections.immutable.persistentListOf
 enum class IndicatorType(
     val contentsList: List<String>,
     val typoStyle: TextStyle,
-    val spaceBy: Dp,
     val spacerHeight: Dp = 4.dp,
     @ColorRes val indicatorColor: Color = defaultKakaoWebtoonColors.yellow1,
     @ColorRes val selectedFontColor: Color = defaultKakaoWebtoonColors.white,
@@ -35,7 +34,6 @@ enum class IndicatorType(
             MainViewIndicatorContents.COMPLETE.contents
         ),
         typoStyle = defaultKakaoWebtoonTypography.body2Regular,
-        spaceBy = 4.dp,
         selectedFontColor = defaultKakaoWebtoonColors.yellow1,
         unSelectedFontColor = defaultKakaoWebtoonColors.grey5
     ),
@@ -47,7 +45,6 @@ enum class IndicatorType(
             EpisodeViewIndicatorContents.COMMENTS.contents
         ),
         typoStyle = defaultKakaoWebtoonTypography.title4SemiBold,
-        spaceBy = 25.dp,
         indicatorColor = defaultKakaoWebtoonColors.yellow2,
         selectedFontColor = defaultKakaoWebtoonColors.yellow2,
         unSelectedFontColor = defaultKakaoWebtoonColors.grey3
@@ -61,7 +58,6 @@ enum class IndicatorType(
             StorageViewIndicatorContents.COMMENTS.contents
         ),
         typoStyle = defaultKakaoWebtoonTypography.body2Regular,
-        spaceBy = 18.dp,
         spacerHeight = 0.dp,
         indicatorColor = defaultKakaoWebtoonColors.yellow2,
         selectedFontColor = defaultKakaoWebtoonColors.white
@@ -73,7 +69,6 @@ enum class IndicatorType(
             SearchViewIndicatorContents.FREE_LATER.contents
         ),
         typoStyle = defaultKakaoWebtoonTypography.title2SemiBold,
-        spaceBy = 0.dp,
         spacerHeight = 11.dp,
         indicatorColor = defaultKakaoWebtoonColors.yellow2,
         selectedFontColor = defaultKakaoWebtoonColors.white,

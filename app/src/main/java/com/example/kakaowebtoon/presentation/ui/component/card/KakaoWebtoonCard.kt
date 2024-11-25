@@ -18,6 +18,7 @@ import com.example.kakaowebtoon.presentation.ui.component.tags.KakaoWebtoonClock
 import com.example.kakaowebtoon.presentation.ui.component.tags.KakaoWebtoonFreeLaterTag
 import com.example.kakaowebtoon.presentation.ui.component.tags.KakaoWebtoonFreeTag
 import com.example.kakaowebtoon.presentation.ui.component.tags.KakaoWebtoonGenreTag
+import com.example.kakaowebtoon.presentation.ui.component.tags.KakaoWebtoonUpTag
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
 import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
 
@@ -43,6 +44,7 @@ fun KakaoWebtoonCard(
                     Promotion.FREE -> KakaoWebtoonFreeTag()
                     Promotion.FREE_LATER -> KakaoWebtoonFreeLaterTag()
                     Promotion.CLOCK -> KakaoWebtoonClockTag()
+                    Promotion.UP -> KakaoWebtoonUpTag()
                 }
                 Spacer(modifier = modifier.width(3.dp))
                 KakaoWebtoonGenreTag(card.genre)
