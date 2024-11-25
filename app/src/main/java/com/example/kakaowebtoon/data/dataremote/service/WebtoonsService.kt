@@ -9,4 +9,7 @@ interface WebtoonsService {
     suspend fun searchWebtoons(
         @Query("title") title: String
     ): WebtoonsResponseDto
+
+    @GET("/api/v1/webtoons/recent")
+    suspend fun recentWebtoons(): WebtoonsResponseDto
 }

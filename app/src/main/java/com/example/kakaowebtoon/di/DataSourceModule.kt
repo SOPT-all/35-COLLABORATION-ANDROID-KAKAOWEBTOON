@@ -25,5 +25,5 @@ abstract class DataSourceModule {
 
     @Binds
     @Singleton
-    abstract fun bindsWebtoonsLocalDataSource(webtoonsRemoteDataSourceImpl: WebtoonsRemoteDataSourceImpl): WebtoonsRemoteDataSource
+    abstract fun bindsWebtoonsRemoteDataSource(webtoonsRemoteDataSourceImpl: WebtoonsRemoteDataSourceImpl): WebtoonsRemoteDataSource
 }

@@ -10,4 +10,6 @@ class WebtoonsRemoteDataSourceImpl @Inject constructor(
 ) : WebtoonsRemoteDataSource {
     override suspend fun searchWebtoons(title: String): WebtoonsResponseDto =
         service.searchWebtoons(title = title)
+
+    override suspend fun recentWebtoons(): WebtoonsResponseDto = service.recentWebtoons()
 }

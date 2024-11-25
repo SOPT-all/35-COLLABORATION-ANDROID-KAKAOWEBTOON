@@ -4,4 +4,6 @@ import com.example.kakaowebtoon.data.dataremote.model.response.WebtoonsResponseD
 
 interface WebtoonsRemoteDataSource {
     suspend fun searchWebtoons(title: String): WebtoonsResponseDto
+
+    suspend fun recentWebtoons(): WebtoonsResponseDto
 }

@@ -11,4 +11,8 @@ class WebtoonsRepositoryImpl @Inject constructor(
     override suspend fun searchWebtoons(title: String): Result<WebtoonsResponseDto> = runCatching {
         webtoonsRemoteDataSource.searchWebtoons(title = title)
     }
+
+    override suspend fun recentWebtoons(): Result<WebtoonsResponseDto> = runCatching {
+        webtoonsRemoteDataSource.recentWebtoons()
+    }
 }
