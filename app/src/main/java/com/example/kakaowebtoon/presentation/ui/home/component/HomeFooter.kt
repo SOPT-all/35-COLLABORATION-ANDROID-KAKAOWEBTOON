@@ -21,6 +21,12 @@ import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 fun HomeFooter(
     modifier: Modifier = Modifier
 ) {
+    val footerItems = listOf(
+        stringResource(R.string.home_footer_private_policy),
+        stringResource(R.string.home_footer_terms_of_use),
+        stringResource(R.string.home_footer_customer_service),
+        stringResource(R.string.home_footer_business_information)
+    )
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -30,41 +36,20 @@ fun HomeFooter(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Text(
-                text = stringResource(R.string.home_footer_private_policy),
-                style = KakaoWebtoonTheme.typography.body4SemiBold,
-                color = KakaoWebtoonTheme.colors.grey2
-            )
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.ic_home_vertical_line),
-                contentDescription = null,
-                tint = KakaoWebtoonTheme.colors.grey5
-            )
-            Text(
-                text = stringResource(R.string.home_footer_terms_of_use),
-                style = KakaoWebtoonTheme.typography.body4SemiBold,
-                color = KakaoWebtoonTheme.colors.grey2
-            )
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.ic_home_vertical_line),
-                contentDescription = null,
-                tint = KakaoWebtoonTheme.colors.grey5
-            )
-            Text(
-                text = stringResource(R.string.home_footer_customer_service),
-                style = KakaoWebtoonTheme.typography.body4SemiBold,
-                color = KakaoWebtoonTheme.colors.grey2
-            )
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.ic_home_vertical_line),
-                contentDescription = null,
-                tint = KakaoWebtoonTheme.colors.grey5
-            )
-            Text(
-                text = stringResource(R.string.home_footer_business_information),
-                style = KakaoWebtoonTheme.typography.body4SemiBold,
-                color = KakaoWebtoonTheme.colors.grey2
-            )
+            footerItems.forEachIndexed { index, item ->
+                Text(
+                    text = item,
+                    style = KakaoWebtoonTheme.typography.body4SemiBold,
+                    color = KakaoWebtoonTheme.colors.grey2
+                )
+                if (index != footerItems.lastIndex) {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(R.drawable.ic_home_vertical_line),
+                        contentDescription = null,
+                        tint = KakaoWebtoonTheme.colors.grey5
+                    )
+                }
+            }
         }
         Text(
             text = stringResource(R.string.home_footer_copyright),

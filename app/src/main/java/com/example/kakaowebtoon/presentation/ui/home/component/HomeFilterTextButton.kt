@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.R
@@ -30,7 +31,11 @@ fun HomeFilterTextButton(
     ) {
         Text(
             text = title,
-            style = KakaoWebtoonTheme.typography.body6Regular,
+            style = KakaoWebtoonTheme.typography.body6Regular.copy(
+                platformStyle = PlatformTextStyle(
+                    includeFontPadding = true
+                )
+            ),
             color = KakaoWebtoonTheme.colors.white
         )
         Icon(

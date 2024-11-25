@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -59,17 +60,24 @@ private fun HomeBannerButton(
 ) {
     Row(
         modifier = modifier
-            .clip(RoundedCornerShape(0.dp, 0.dp, 12.dp, 12.dp))
+            .clip(
+                RoundedCornerShape(
+                    topStart = 0.dp,
+                    topEnd = 0.dp,
+                    bottomEnd = 12.dp,
+                    bottomStart = 12.dp
+                )
+            )
             .background(KakaoWebtoonTheme.colors.blue)
             .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            modifier = Modifier.padding(end = 4.dp),
             text = stringResource(R.string.home_banner_button_title),
             style = KakaoWebtoonTheme.typography.body2Regular,
             color = KakaoWebtoonTheme.colors.white
         )
+        Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = stringResource(R.string.home_banner_button_episode),
             style = KakaoWebtoonTheme.typography.body2Regular,
@@ -85,7 +93,12 @@ private fun HomeBannerButton(
                 color = KakaoWebtoonTheme.colors.white
             )
             Icon(
-                modifier = Modifier.padding(4.dp, 1.dp, 5.dp, 1.dp),
+                modifier = Modifier.padding(
+                    start = 4.dp,
+                    top = 1.dp,
+                    end = 5.dp,
+                    bottom = 1.dp
+                ),
                 imageVector = ImageVector.vectorResource(R.drawable.ic_home_arrow_right),
                 contentDescription = stringResource(R.string.home_banner_button_continue),
                 tint = KakaoWebtoonTheme.colors.white
