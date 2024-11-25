@@ -21,13 +21,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.presentation.type.TopBarType
 import com.example.kakaowebtoon.presentation.util.noRippleClickable
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
 fun KakaoWebtoonTopBar(
     topBarType: TopBarType,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    firstIconOnClick: () -> Unit = {},
+    secondIconOnClick: () -> Unit = {}
 ) {
     Box(
         modifier = modifier
@@ -45,9 +46,9 @@ fun KakaoWebtoonTopBar(
                 modifier = Modifier
                     .padding(start = topBarType.firstIconStartPadding)
                     .noRippleClickable {
-                        topBarType.firstIconOnClick?.invoke()
+                        firstIconOnClick()
                     },
-                tint = defaultKakaoWebtoonColors.white
+                tint = KakaoWebtoonTheme.colors.white
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -58,9 +59,9 @@ fun KakaoWebtoonTopBar(
                 modifier = Modifier
                     .padding(end = topBarType.secondIconEndPadding)
                     .noRippleClickable {
-                        topBarType.secondIconOnClick?.invoke()
+                        secondIconOnClick()
                     },
-                tint = defaultKakaoWebtoonColors.white
+                tint = KakaoWebtoonTheme.colors.white
             )
 
             Icon(
@@ -68,22 +69,22 @@ fun KakaoWebtoonTopBar(
                 contentDescription = null,
                 modifier = Modifier
                     .padding(end = topBarType.thirdIconEndPadding),
-                tint = defaultKakaoWebtoonColors.white
+                tint = KakaoWebtoonTheme.colors.white
             )
         }
 
         if (topBarType.storageTitleResId != null) {
             Text(
                 text = stringResource(topBarType.storageTitleResId),
-                color = defaultKakaoWebtoonColors.white,
-                style = defaultKakaoWebtoonTypography.head2Bold
+                color = KakaoWebtoonTheme.colors.white,
+                style = KakaoWebtoonTheme.typography.head2Bold
             )
         } else if (topBarType.mainImageResId != null) {
             Icon(
                 imageVector = ImageVector.vectorResource(topBarType.mainImageResId),
                 contentDescription = null,
                 modifier = Modifier.size(35.dp, 13.dp),
-                tint = defaultKakaoWebtoonColors.white
+                tint = KakaoWebtoonTheme.colors.white
             )
         }
     }
@@ -92,7 +93,7 @@ fun KakaoWebtoonTopBar(
 @Preview
 @Composable
 private fun BaseTopBarPreview() {
-    Column(modifier = Modifier.background(color = defaultKakaoWebtoonColors.black3)) {
+    Column(modifier = Modifier.background(color = KakaoWebtoonTheme.colors.black3)) {
         KakaoWebtoonTopBar(topBarType = TopBarType.Home)
         KakaoWebtoonTopBar(topBarType = TopBarType.Episode)
         KakaoWebtoonTopBar(topBarType = TopBarType.Storage)

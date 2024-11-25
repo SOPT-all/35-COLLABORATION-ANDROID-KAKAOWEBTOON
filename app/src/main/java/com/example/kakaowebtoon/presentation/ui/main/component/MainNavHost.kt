@@ -48,10 +48,16 @@ fun MainNavHost(
             giftNavGraph(padding = padding)
 
             // TODO: Storage NavGraph
-            storageNavGraph(padding = padding)
+            storageNavGraph(
+                padding = padding,
+                onNavigateToSearch = navigator::navigateSearch
+            )
 
             // TODO: Search NavGraph
-            searchNavGraph(padding = padding)
+            searchNavGraph(
+                padding = padding,
+                popUpBackStack = navigator::popBackStackIfNotHome
+            )
 
             // TODO: Episode NavGraph
             episodeNavGraph(padding = padding)
