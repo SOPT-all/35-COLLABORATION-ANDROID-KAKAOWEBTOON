@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,13 +18,13 @@ class SearchViewModel @Inject constructor(
     private val dummyUseCase: DummyUseCase
 ) : ViewModel() {
     private val _searchText = MutableStateFlow("")
-    val searchText: StateFlow<String> = _searchText
+    val searchText: StateFlow<String> = _searchText.asStateFlow()
 
     private val _webtoonSearchList = MutableStateFlow<List<WebtoonCard>>(emptyList())
-    val webtoonSearchList: StateFlow<List<WebtoonCard>> = _webtoonSearchList
+    val webtoonSearchList: StateFlow<List<WebtoonCard>> = _webtoonSearchList.asStateFlow()
 
     private val _webtoonDummyList = MutableStateFlow<List<WebtoonCard>>(emptyList())
-    val webtoonDummyList: StateFlow<List<WebtoonCard>> = _webtoonDummyList
+    val webtoonDummyList: StateFlow<List<WebtoonCard>> = _webtoonDummyList.asStateFlow()
 
     private val dummyList = persistentListOf(
         WebtoonCard(

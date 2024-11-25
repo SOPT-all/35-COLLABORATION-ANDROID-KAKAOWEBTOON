@@ -25,11 +25,11 @@ inline fun Modifier.noRippleClickable(
     }
 }
 
-inline fun Modifier.showIf(condition: Boolean): Modifier {
+fun Modifier.showIf(condition: Boolean): Modifier {
     return if (condition) this else Modifier.size(0.dp)
 }
 
-inline fun Modifier.roundedBackgroundWithPadding(
+fun Modifier.roundedBackgroundWithPadding(
     backgroundColor: Color,
     cornerRadius: Dp,
     padding: PaddingValues

@@ -37,7 +37,7 @@ fun HomeScreen(
         Text(
             text = "HomeScreen 입니다",
             color = KakaoWebtoonTheme.colors.white,
-            modifier = modifier.noRippleClickable { onNavigateToSearch() }
+            modifier = Modifier.noRippleClickable { onNavigateToSearch() }
         )
     }
 }

@@ -25,8 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.R
 import com.example.kakaowebtoon.presentation.util.noRippleClickable
 import com.example.kakaowebtoon.presentation.util.showIf
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonTypography
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
 fun SearchTextField(
@@ -39,15 +38,17 @@ fun SearchTextField(
 
 ) {
     Row(
-        modifier = modifier.fillMaxWidth().padding(horizontal = 6.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 6.dp),
         verticalAlignment = Alignment.CenterVertically
 
     ) {
         Row(
-            modifier = modifier
+            modifier = Modifier
                 .weight(1f)
                 .background(
-                    color = defaultKakaoWebtoonColors.black1,
+                    color = KakaoWebtoonTheme.colors.black1,
                     shape = RoundedCornerShape(6.dp)
                 )
                 .padding(vertical = 7.dp, horizontal = 12.dp),
@@ -60,10 +61,10 @@ fun SearchTextField(
                         onValueChange(it)
                     }
                 },
-                textStyle = defaultKakaoWebtoonTypography.title2SemiBold.copy(
-                    color = defaultKakaoWebtoonColors.white
+                textStyle = KakaoWebtoonTheme.typography.title2SemiBold.copy(
+                    color = KakaoWebtoonTheme.colors.white
                 ),
-                cursorBrush = SolidColor(if (value.isEmpty()) defaultKakaoWebtoonColors.grey6 else defaultKakaoWebtoonColors.white),
+                cursorBrush = SolidColor(if (value.isEmpty()) KakaoWebtoonTheme.colors.grey6 else KakaoWebtoonTheme.colors.white),
                 maxLines = 1,
                 singleLine = true,
                 keyboardOptions = KeyboardOptions.Default.copy(
@@ -73,8 +74,8 @@ fun SearchTextField(
                     if (value.isEmpty()) {
                         Text(
                             text = placeholder,
-                            style = defaultKakaoWebtoonTypography.title4SemiBold,
-                            color = defaultKakaoWebtoonColors.grey6
+                            style = KakaoWebtoonTheme.typography.title4SemiBold,
+                            color = KakaoWebtoonTheme.colors.grey6
                         )
                     }
                     innerTextField()
@@ -93,8 +94,8 @@ fun SearchTextField(
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_search_close),
             contentDescription = "Search View Close Icon",
-            tint = defaultKakaoWebtoonColors.white,
-            modifier = modifier.noRippleClickable { popUpBackStack() }
+            tint = KakaoWebtoonTheme.colors.white,
+            modifier = Modifier.noRippleClickable { popUpBackStack() }
         )
     }
 }

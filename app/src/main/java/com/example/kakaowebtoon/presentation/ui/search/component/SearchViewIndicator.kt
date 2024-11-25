@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kakaowebtoon.presentation.type.IndicatorType
 import com.example.kakaowebtoon.presentation.util.noRippleClickable
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
 fun SearchViewIndicator(
@@ -58,7 +58,7 @@ fun SearchViewIndicator(
                         .height(if (selectedIndex == index) 3.dp else 2.dp)
                         .fillMaxWidth()
                         .background(
-                            color = if (selectedIndex == index) indicatorType.indicatorColor else defaultKakaoWebtoonColors.darkGrey7
+                            color = if (selectedIndex == index) indicatorType.indicatorColor else KakaoWebtoonTheme.colors.darkGrey7
                         )
                 )
             }
@@ -69,7 +69,7 @@ fun SearchViewIndicator(
 @Preview
 @Composable
 private fun SearchIndicatorPreview() {
-    Column(modifier = Modifier.background(color = defaultKakaoWebtoonColors.black3)) {
+    Column(modifier = Modifier.background(color = KakaoWebtoonTheme.colors.black3)) {
         SearchViewIndicator()
     }
 }
