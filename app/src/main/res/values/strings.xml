@@ -48,6 +48,7 @@
     <string name="episode_free_tag">무료</string>
     <string name="episode_date_free">%d일 후 무료</string>
     <string name="episode_go_top">맨 위로</string>
+    <string name="episode_banner_button_continue">이어보기</string>
 
 
 </resources>

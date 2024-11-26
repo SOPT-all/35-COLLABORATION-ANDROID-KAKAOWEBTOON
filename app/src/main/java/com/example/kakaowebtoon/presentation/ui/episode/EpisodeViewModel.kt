@@ -1,13 +1,17 @@
 package com.example.kakaowebtoon.presentation.ui.episode
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.kakaowebtoon.domain.model.EpisodeCard
 import com.example.kakaowebtoon.domain.model.WebtoonDetail
 import com.example.kakaowebtoon.domain.usecase.DummyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,6 +23,15 @@ class EpisodeViewModel @Inject constructor(
 
     private val _episodeDummyList = MutableStateFlow<List<EpisodeCard>>(emptyList())
     val episodeDummyList: StateFlow<List<EpisodeCard>> = _episodeDummyList.asStateFlow()
+
+    val largestIndexEpisode = _episodeDummyList.map { episodes ->
+        episodes.filter { it.status != 0 }
+            .maxByOrNull { it.index }
+    }.stateIn(
+        viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = null
+    )
 
     init {
         loadDummyWebtoonDetail()
