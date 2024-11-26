@@ -4,7 +4,6 @@ import com.example.kakaowebtoon.data.dataremote.datasource.WebtoonsRemoteDataSou
 import com.example.kakaowebtoon.data.dataremote.model.response.DailyWebtoonResponseDto
 import com.example.kakaowebtoon.data.dataremote.model.response.WebtoonsResponseDto
 import com.example.kakaowebtoon.data.dataremote.service.WebtoonsService
-import com.example.kakaowebtoon.data.mapper.toDomainModel
 import javax.inject.Inject
 
 class WebtoonsRemoteDataSourceImpl @Inject constructor(
