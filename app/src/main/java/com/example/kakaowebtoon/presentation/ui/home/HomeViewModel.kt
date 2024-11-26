@@ -1,13 +1,16 @@
 package com.example.kakaowebtoon.presentation.ui.home
 
 import androidx.lifecycle.ViewModel
-import com.example.kakaowebtoon.domain.usecase.DummyUseCase
+import androidx.lifecycle.viewModelScope
+import com.example.kakaowebtoon.domain.model.WebtoonCard
+import com.example.kakaowebtoon.domain.usecase.GetDailyWebtoonUseCase
 import com.example.kakaowebtoon.presentation.type.HomeDayType
 import com.example.kakaowebtoon.presentation.type.HomeGenreType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -15,9 +18,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val dummyUseCase: DummyUseCase
+    private val getDailyWebtoonUseCase: GetDailyWebtoonUseCase
 ) : ViewModel() {
-    private val _webtoonList = MutableStateFlow(emptyList<String>())
+    private val _webtoonList = MutableStateFlow(emptyList<WebtoonCard>())
     val webtoonList = _webtoonList.asStateFlow()
 
     private val _selectedDay = MutableStateFlow(0)
@@ -25,25 +28,6 @@ class HomeViewModel @Inject constructor(
 
     private val _selectedGenreType = MutableStateFlow(HomeGenreType.ALL)
     val selectedGenreType = _selectedGenreType.asStateFlow()
-
-    private val dummyWebtoonList = listOf(
-        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png"
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png",
-//        "https://i.ibb.co/ZHdMM0m/img-home-tooncard22.png"
-    )
 
     init {
         getToday()
@@ -57,9 +41,23 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getWebtoonList(dayIndex: Int) {
-        _webtoonList.update {
-            // useCase
-            dummyWebtoonList
+        viewModelScope.launch {
+            getDailyWebtoonUseCase(
+                when (dayIndex) {
+                    1 -> "mon"
+                    2 -> "tue"
+                    3 -> "wed"
+                    4 -> "thu"
+                    5 -> "fri"
+                    6 -> "sat"
+                    7 -> "sun"
+                    else -> "mon"
+                }
+            ).onSuccess { webtoonList ->
+                _webtoonList.update { webtoonList }
+            }.onFailure {
+                it.printStackTrace()
+            }
         }
     }
 
@@ -69,5 +67,6 @@ class HomeViewModel @Inject constructor(
 
     fun onSelectDayTab(index: Int) {
         _selectedDay.update { index }
+        getWebtoonList(index)
     }
 }

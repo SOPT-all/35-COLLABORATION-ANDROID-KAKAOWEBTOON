@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.kakaowebtoon.R
+import com.example.kakaowebtoon.domain.model.WebtoonCard
 import com.example.kakaowebtoon.domain.util.HomeFilter
 import com.example.kakaowebtoon.presentation.type.HomeGenreType
 import com.example.kakaowebtoon.presentation.type.IndicatorType
@@ -78,7 +79,7 @@ fun HomeRoute(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
-    webtoonList: List<String>,
+    webtoonList: List<WebtoonCard>,
     selectedGenreType: HomeGenreType,
     onSelectGenreType: (HomeGenreType) -> Unit,
     selectedDay: Int,
@@ -162,14 +163,14 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(2.dp)
             ) {
-                urlChunk.forEach { url ->
+                urlChunk.forEach { urlItem ->
                     HomeCardView(
                         modifier = Modifier
                             .weight(1f)
                             .onGloballyPositioned {
                                 homeCardHeight = it.size.height
                             },
-                        imageUrl = url
+                        imageUrl = urlItem.imageUrl
                     )
                 }
                 repeat(3 - urlChunk.size) {
