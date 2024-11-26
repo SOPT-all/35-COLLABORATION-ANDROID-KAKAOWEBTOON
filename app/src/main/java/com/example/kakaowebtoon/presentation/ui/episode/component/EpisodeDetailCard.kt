@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.kakaowebtoon.R
 import com.example.kakaowebtoon.domain.model.EpisodeCard
+import com.example.kakaowebtoon.presentation.util.showIf
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -57,34 +58,34 @@ fun EpisodeDetailCard(
                 contentScale = ContentScale.Crop
             )
 
-            if (card.status in 1..10) {
-                Canvas(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 3.dp, end = 4.dp, bottom = 3.dp)
-                        .height(4.dp)
-                        .align(Alignment.BottomCenter)
-                ) {
-                    drawRoundRect(
-                        color = whiteColor,
-                        size = size.copy(width = size.width * (card.status / 10f)),
-                        cornerRadius = androidx.compose.ui.geometry.CornerRadius(10.dp.toPx())
-                    )
-                    drawRoundRect(
-                        color = white50Color,
-                        size = size.copy(width = size.width),
-                        cornerRadius = androidx.compose.ui.geometry.CornerRadius(10.dp.toPx())
-                    )
-                }
-            }
-
-            if (cardDate.isBefore(today)) {
-                EpisodeFreeTag(
-                    modifier = Modifier
-                        .padding(start = 1.dp, top = 2.dp)
-                        .align(Alignment.TopStart)
+            Canvas(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 3.dp, end = 4.dp, bottom = 3.dp)
+                    .height(4.dp)
+                    .align(Alignment.BottomCenter)
+                    .showIf(card.status in 10..10)
+            ) {
+                drawRoundRect(
+                    color = whiteColor,
+                    size = size.copy(width = size.width * (card.status / 10f)),
+                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(10.dp.toPx())
+                )
+                drawRoundRect(
+                    color = white50Color,
+                    size = size.copy(width = size.width),
+                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(10.dp.toPx())
                 )
             }
+
+
+            EpisodeFreeTag(
+                modifier = Modifier
+                    .padding(start = 1.dp, top = 2.dp)
+                    .align(Alignment.TopStart)
+                    .showIf(cardDate.isBefore(today))
+            )
+
         }
 
         Column(

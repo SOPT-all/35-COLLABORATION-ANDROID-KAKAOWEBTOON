@@ -34,7 +34,7 @@ class EpisodeViewModel @Inject constructor(
             viewCount = 270000000,
             heartCount = 2007000,
             coupon = 10,
-            promotion = "연재 무료"
+            promotion = "연재무료"
         )
         _webtoonDetail.value = dummyDetail
     }
