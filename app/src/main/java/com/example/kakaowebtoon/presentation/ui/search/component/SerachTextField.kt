@@ -3,7 +3,6 @@ package com.example.kakaowebtoon.presentation.ui.search.component
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -79,16 +78,17 @@ fun SearchTextField(
                         )
                     }
                     innerTextField()
-                }
+                },
+                modifier = Modifier.weight(1f)
             )
 
-            Spacer(modifier = modifier.weight(1f))
             Image(
                 imageVector = ImageVector.vectorResource(R.drawable.ic_search_subtraction),
                 contentDescription = null,
                 modifier = Modifier
                     .noRippleClickable { onValueChange("") }
-                    .showIf(value.isNotEmpty())
+                    .showIf(value.isNotEmpty()),
+                alignment = Alignment.CenterEnd
             )
         }
         Icon(
