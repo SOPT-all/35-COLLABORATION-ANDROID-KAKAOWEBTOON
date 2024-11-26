@@ -7,6 +7,7 @@ import com.example.kakaowebtoon.domain.usecase.DummyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,10 +15,10 @@ class EpisodeViewModel @Inject constructor(
     private val dummyUseCase: DummyUseCase
 ) : ViewModel() {
     private val _webtoonDetail = MutableStateFlow<WebtoonDetail?>(null)
-    val webtoonDetail: StateFlow<WebtoonDetail?> = _webtoonDetail
+    val webtoonDetail: StateFlow<WebtoonDetail?> = _webtoonDetail.asStateFlow()
 
     private val _episodeDummyList = MutableStateFlow<List<EpisodeCard>>(emptyList())
-    val episodeDummyList: StateFlow<List<EpisodeCard>> = _episodeDummyList
+    val episodeDummyList: StateFlow<List<EpisodeCard>> = _episodeDummyList.asStateFlow()
 
     init {
         loadDummyWebtoonDetail()

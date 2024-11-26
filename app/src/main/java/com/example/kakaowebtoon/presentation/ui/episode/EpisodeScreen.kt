@@ -18,15 +18,16 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.kakaowebtoon.R
+import com.example.kakaowebtoon.domain.model.EpisodeCard
+import com.example.kakaowebtoon.domain.model.WebtoonDetail
 import com.example.kakaowebtoon.presentation.type.IndicatorType
 import com.example.kakaowebtoon.presentation.type.TopBarType
 import com.example.kakaowebtoon.presentation.ui.component.KakaoWebtoonTopBar
@@ -44,10 +45,14 @@ fun EpisodeRoute(
     modifier: Modifier = Modifier,
     viewModel: EpisodeViewModel = hiltViewModel()
 ) {
+    val webtoonDetail by viewModel.webtoonDetail.collectAsStateWithLifecycle()
+    val episodeDummyCards by viewModel.episodeDummyList.collectAsStateWithLifecycle()
+
     EpisodeScreen(
-        modifier = modifier.padding(padding),
         popUpBackStack = popUpBackStack,
-        viewModel = viewModel
+        webtoonDetail = webtoonDetail,
+        episodeDummyCards = episodeDummyCards,
+        modifier = modifier.padding(padding)
     )
 }
 
@@ -55,14 +60,13 @@ fun EpisodeRoute(
 @Composable
 fun EpisodeScreen(
     popUpBackStack: () -> Unit,
-    modifier: Modifier = Modifier,
-    viewModel: EpisodeViewModel = hiltViewModel()
+    webtoonDetail: WebtoonDetail?,
+    episodeDummyCards: List<EpisodeCard>,
+    modifier: Modifier = Modifier
 ) {
-    val webtoonDetail by viewModel.webtoonDetail.collectAsState()
-    val episodeDummyCards by viewModel.episodeDummyList.collectAsState()
-
     val lazyListState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
+    val EPISODE_CARD_PER_ROW = 3
 
     LazyColumn(
         modifier = modifier
@@ -97,7 +101,7 @@ fun EpisodeScreen(
             Spacer(Modifier.height(10.dp))
         }
 
-        items(episodeDummyCards.chunked(3)) { index ->
+        items(episodeDummyCards.chunked(EPISODE_CARD_PER_ROW)) { index ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -112,7 +116,7 @@ fun EpisodeScreen(
                     )
                 }
 
-                repeat(3 - index.size) {
+                repeat(EPISODE_CARD_PER_ROW - index.size) {
                     Spacer(modifier = Modifier.weight(1f))
                 }
             }
@@ -139,10 +143,4 @@ fun EpisodeScreen(
             }
         }
     }
-}
-
-@Preview
-@Composable
-private fun EpisodeScreenPreview() {
-    EpisodeScreen(popUpBackStack = {})
 }
