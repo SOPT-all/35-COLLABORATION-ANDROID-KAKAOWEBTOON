@@ -167,7 +167,7 @@ fun EpisodeScreen(
                 .padding(top = 13.dp, bottom = 7.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             Text(
                 text = stringResource(R.string.episode_banner_button_continue),
                 style = KakaoWebtoonTheme.typography.title2SemiBold,
