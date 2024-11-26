@@ -42,23 +42,23 @@ fun SearchRoute(
     val searchText by viewModel.searchText.collectAsState()
 
     SearchScreen(
-        modifier = modifier.padding(padding),
         popUpBackStack = popUpBackStack,
         webtoonCards = webtoonCards,
         webtoonDummyCards = webtoonDummyCards,
         searchText = searchText,
-        onSearchTextChange = viewModel::updateSearchText
+        onSearchTextChange = viewModel::updateSearchText,
+        modifier = modifier.padding(padding)
     )
 }
 
 @Composable
 fun SearchScreen(
     popUpBackStack: () -> Unit,
-    modifier: Modifier = Modifier,
     webtoonCards: List<WebtoonCard>,
     webtoonDummyCards: List<WebtoonCard>,
     searchText: String,
-    onSearchTextChange: (String) -> Unit
+    onSearchTextChange: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier

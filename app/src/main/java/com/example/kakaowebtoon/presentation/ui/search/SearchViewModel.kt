@@ -1,21 +1,20 @@
 package com.example.kakaowebtoon.presentation.ui.search
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kakaowebtoon.domain.model.WebtoonCard
-import com.example.kakaowebtoon.domain.usecase.DummyUseCase
+import com.example.kakaowebtoon.domain.usecase.SearchWebtoonsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val dummyUseCase: DummyUseCase
+    private val searchWebtoonsUseCase: SearchWebtoonsUseCase
 ) : ViewModel() {
     private val _searchText = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
@@ -26,23 +25,17 @@ class SearchViewModel @Inject constructor(
     private val _webtoonDummyList = MutableStateFlow<List<WebtoonCard>>(emptyList())
     val webtoonDummyList: StateFlow<List<WebtoonCard>> = _webtoonDummyList.asStateFlow()
 
-    private val dummyList = persistentListOf(
-        WebtoonCard(
-            imageUrl = "https://i.ibb.co/JrRcFQ9/img-storage-toon01.png",
-            title = "어쿠스틱 라이프",
-            promotion = "연재 무료",
-            author = "난다",
-            genre = "#로맨스"
-        )
-    )
-
     init {
         loadDummyWebtoonCards()
-        observeSearchText()
     }
 
     fun updateSearchText(newText: String) {
-        _searchText.value = newText.replace("\n", "")
+        _searchText.value = newText
+        if (newText.isNotBlank()) {
+            searchWebtoons(newText)
+        } else {
+            _webtoonSearchList.value = emptyList()
+        }
     }
 
     private fun loadDummyWebtoonCards() {
@@ -121,17 +114,31 @@ class SearchViewModel @Inject constructor(
         _webtoonDummyList.value = dummyWebtoons
     }
 
-    private fun observeSearchText() {
+    private fun searchWebtoons(title: String) {
         viewModelScope.launch {
-            _searchText.collectLatest { text ->
-                val filteredList = if (text.isNotEmpty()) {
-                    dummyList.filter {
-                        it.title.contains(text, ignoreCase = true)
+            try {
+                val response = searchWebtoonsUseCase(title = title)
+                response.onSuccess { result ->
+                    val webtoons = result.data.webtoons
+                    _webtoonSearchList.value = webtoons.map { webtoon ->
+                        WebtoonCard(
+                            imageUrl = webtoon.image ?: "",
+                            title = webtoon.title,
+                            promotion = webtoon.promotion,
+                            author = webtoon.author,
+                            genre = "#${webtoon.genre}"
+                        )
                     }
-                } else {
-                    emptyList()
                 }
-                _webtoonSearchList.value = filteredList
+                response.onFailure { throwable ->
+                    Log.e(
+                        "SearchViewModel",
+                        "Fail ${throwable.message}",
+                        throwable
+                    )
+                }
+            } catch (e: Exception) {
+                Log.e("SearchViewModel", "Exception: ${e.message}", e)
             }
         }
     }

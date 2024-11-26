@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.kakaowebtoon.domain.model.WebtoonCard
 import com.example.kakaowebtoon.presentation.type.IndicatorType
 import com.example.kakaowebtoon.presentation.type.StorageButtonType
 import com.example.kakaowebtoon.presentation.type.TopBarType
@@ -27,7 +28,7 @@ import com.example.kakaowebtoon.presentation.ui.component.KakaoWebtoonTopBar
 import com.example.kakaowebtoon.presentation.ui.component.card.KakaoWebtoonCard
 import com.example.kakaowebtoon.presentation.ui.component.indicator.KakaoWebtoonIIndicator
 import com.example.kakaowebtoon.presentation.ui.storage.component.StorageButton
-import com.example.kakaowebtoon.ui.theme.defaultKakaoWebtoonColors
+import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
 fun StorageRoute(
@@ -36,26 +37,26 @@ fun StorageRoute(
     modifier: Modifier = Modifier,
     viewModel: StorageViewModel = hiltViewModel()
 ) {
+    val recentWebtoonCards by viewModel.recentWebtoonList.collectAsState()
+
     StorageScreen(
+        recentWebtoonCards = recentWebtoonCards,
         onNavigateToSearch = onNavigateToSearch,
-        modifier = modifier.padding(padding),
-        viewModel = viewModel
+        modifier = modifier.padding(padding)
     )
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun StorageScreen(
+    recentWebtoonCards: List<WebtoonCard>,
     onNavigateToSearch: () -> Unit,
-    modifier: Modifier = Modifier,
-    viewModel: StorageViewModel = hiltViewModel()
+    modifier: Modifier = Modifier
 ) {
-    val webtoonDummyCards by viewModel.webtoonDummyList.collectAsState()
-
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(defaultKakaoWebtoonColors.black3)
+            .background(KakaoWebtoonTheme.colors.black3)
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize()
@@ -69,13 +70,14 @@ fun StorageScreen(
             stickyHeader {
                 Column(
                     modifier = Modifier
-                        .background(defaultKakaoWebtoonColors.black3)
+                        .background(KakaoWebtoonTheme.colors.black3)
                         .padding(top = 5.dp, bottom = 10.dp)
                 ) {
                     KakaoWebtoonIIndicator(
                         modifier = Modifier.padding(horizontal = 17.dp),
                         indicatorType = IndicatorType.Storage
                     )
+                    Spacer(modifier = Modifier.height(3.dp))
                     Row(
                         modifier = Modifier.padding(horizontal = 10.dp)
                     ) {
@@ -91,7 +93,7 @@ fun StorageScreen(
                     }
                 }
             }
-            items(webtoonDummyCards) { card ->
+            items(recentWebtoonCards) { card ->
                 Column(modifier = Modifier.padding(horizontal = 10.dp)) {
                     KakaoWebtoonCard(card)
                     Spacer(modifier = Modifier.height(10.dp))
@@ -104,5 +106,5 @@ fun StorageScreen(
 @Preview
 @Composable
 private fun SearchScreenPreview() {
-    StorageScreen(onNavigateToSearch = {})
+//    StorageScreen(onNavigateToSearch = {})
 }
