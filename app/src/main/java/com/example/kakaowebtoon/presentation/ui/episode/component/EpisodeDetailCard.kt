@@ -78,14 +78,12 @@ fun EpisodeDetailCard(
                 )
             }
 
-
             EpisodeFreeTag(
                 modifier = Modifier
                     .padding(start = 1.dp, top = 2.dp)
                     .align(Alignment.TopStart)
                     .showIf(cardDate.isBefore(today))
             )
-
         }
 
         Column(
