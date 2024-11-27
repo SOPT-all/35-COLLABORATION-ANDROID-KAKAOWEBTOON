@@ -83,108 +83,114 @@ fun EpisodeScreen(
             .background(KakaoWebtoonTheme.colors.black3)
             .padding(WindowInsets.systemBars.asPaddingValues())
     ) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            state = lazyListState
+        Column(
+            modifier = Modifier.fillMaxSize()
         ) {
-            item {
-                KakaoWebtoonTopBar(
-                    topBarType = TopBarType.Episode,
-                    firstIconOnClick = popUpBackStack
-                )
-            }
+            KakaoWebtoonTopBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(KakaoWebtoonTheme.colors.black3),
+                topBarType = TopBarType.Episode,
+                firstIconOnClick = popUpBackStack
+            )
 
-            item {
-                webtoonDetail?.let { detail ->
-                    EpisodeDetail(detail)
+            LazyColumn(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                state = lazyListState
+            ) {
+                item {
+                    webtoonDetail?.let { detail ->
+                        EpisodeDetail(detail)
+                    }
+                    Spacer(Modifier.height(20.dp))
                 }
-                Spacer(Modifier.height(20.dp))
-            }
 
-            stickyHeader {
-                KakaoWebtoonIIndicator(
-                    modifier = Modifier.padding(horizontal = 93.dp),
-                    indicatorType = IndicatorType.Episode
-                )
-            }
-
-            item {
-                Spacer(Modifier.height(14.dp))
-                EpisodeRow(episodeDummyCards.size)
-                Spacer(Modifier.height(10.dp))
-            }
-
-            items(episodeDummyCards.chunked(EPISODE_CARD_PER_ROW)) { index ->
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 10.dp),
-                    horizontalArrangement = Arrangement.spacedBy(1.dp)
-                ) {
-                    for (card in index) {
-                        EpisodeDetailCard(
-                            card = card,
-                            modifier = Modifier
-                                .weight(1f)
-                        )
-                    }
-
-                    repeat(EPISODE_CARD_PER_ROW - index.size) {
-                        Spacer(modifier = Modifier.weight(1f))
-                    }
-                }
-            }
-
-            item {
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp),
-                    colors = ButtonDefaults.buttonColors(KakaoWebtoonTheme.colors.darkGrey6),
-                    shape = RoundedCornerShape(6.dp),
-                    onClick = {
-                        coroutineScope.launch {
-                            lazyListState.scrollToItem(0)
-                        }
-                    }
-                ) {
-                    Text(
-                        text = stringResource(R.string.episode_go_top),
-                        style = KakaoWebtoonTheme.typography.title4SemiBold,
-                        color = KakaoWebtoonTheme.colors.white
+                stickyHeader {
+                    KakaoWebtoonIIndicator(
+                        modifier = Modifier
+                            .background(KakaoWebtoonTheme.colors.black3)
+                            .padding(horizontal = 93.dp),
+                        indicatorType = IndicatorType.Episode
                     )
                 }
 
-                Spacer(Modifier.height(56.dp))
+                item {
+                    Spacer(Modifier.height(14.dp))
+                    EpisodeRow(episodeDummyCards.size)
+                    Spacer(Modifier.height(10.dp))
+                }
+
+                items(episodeDummyCards.chunked(EPISODE_CARD_PER_ROW)) { index ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 10.dp),
+                        horizontalArrangement = Arrangement.spacedBy(1.dp)
+                    ) {
+                        for (card in index) {
+                            EpisodeDetailCard(
+                                card = card,
+                                modifier = Modifier
+                                    .weight(1f)
+                            )
+                        }
+
+                        repeat(EPISODE_CARD_PER_ROW - index.size) {
+                            Spacer(modifier = Modifier.weight(1f))
+                        }
+                    }
+                }
+
+                item {
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp),
+                        colors = ButtonDefaults.buttonColors(KakaoWebtoonTheme.colors.darkGrey6),
+                        shape = RoundedCornerShape(6.dp),
+                        onClick = {
+                            coroutineScope.launch {
+                                lazyListState.scrollToItem(0)
+                            }
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.episode_go_top),
+                            style = KakaoWebtoonTheme.typography.title4SemiBold,
+                            color = KakaoWebtoonTheme.colors.white
+                        )
+                    }
+                }
             }
-        }
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
-                .background(color = KakaoWebtoonTheme.colors.white, shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
-                .padding(top = 13.dp, bottom = 7.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = stringResource(R.string.episode_banner_button_continue),
-                style = KakaoWebtoonTheme.typography.title2SemiBold,
-                color = KakaoWebtoonTheme.colors.black3,
-                modifier = Modifier.padding(bottom = 2.dp)
-            )
-
-            largestIndexEpisode?.let { episode ->
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color = KakaoWebtoonTheme.colors.white, shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
+                    .padding(top = 13.dp, bottom = 7.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(
-                    text = stringResource(
-                        R.string.episode_card_title,
-                        episode.index,
-                        episode.title
-                    ),
-                    style = KakaoWebtoonTheme.typography.body3Regular,
-                    color = KakaoWebtoonTheme.colors.grey4
+                    text = stringResource(R.string.episode_banner_button_continue),
+                    style = KakaoWebtoonTheme.typography.title2SemiBold,
+                    color = KakaoWebtoonTheme.colors.black3,
+                    modifier = Modifier.padding(bottom = 2.dp)
                 )
+
+                largestIndexEpisode?.let { episode ->
+                    Text(
+                        text = stringResource(
+                            R.string.episode_card_title,
+                            episode.index,
+                            episode.title
+                        ),
+                        style = KakaoWebtoonTheme.typography.body3Regular,
+                        color = KakaoWebtoonTheme.colors.grey4
+                    )
+                }
             }
         }
     }
