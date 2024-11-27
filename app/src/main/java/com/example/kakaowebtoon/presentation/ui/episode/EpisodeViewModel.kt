@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.kakaowebtoon.domain.model.EpisodeCard
 import com.example.kakaowebtoon.domain.model.WebtoonDetail
 import com.example.kakaowebtoon.domain.usecase.EpisodeDetailUseCase
+import com.example.kakaowebtoon.domain.usecase.EpisodesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -13,19 +14,22 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
 class EpisodeViewModel @Inject constructor(
-    private val episodeDetailUseCase: EpisodeDetailUseCase
+    private val episodeDetailUseCase: EpisodeDetailUseCase,
+    private val episodesUseCase: EpisodesUseCase
 ) : ViewModel() {
     private val _webtoonDetail = MutableStateFlow<WebtoonDetail?>(null)
     val webtoonDetail: StateFlow<WebtoonDetail?> = _webtoonDetail.asStateFlow()
 
-    private val _episodeDummyList = MutableStateFlow<List<EpisodeCard>>(emptyList())
-    val episodeDummyList: StateFlow<List<EpisodeCard>> = _episodeDummyList.asStateFlow()
+    private val _webtoonEpisodes = MutableStateFlow<List<EpisodeCard>>(emptyList())
+    val webtoonEpisodes: StateFlow<List<EpisodeCard>> = _webtoonEpisodes.asStateFlow()
 
-    val largestIndexEpisode = _episodeDummyList.map { episodes ->
+    val largestIndexEpisode = _webtoonEpisodes.map { episodes ->
         episodes.filter { it.status != 0 }
             .maxByOrNull { it.index }
     }.stateIn(
@@ -36,7 +40,7 @@ class EpisodeViewModel @Inject constructor(
 
     init {
         loadEpisodeDetail(27)
-        loadDummyEpisodeCards()
+        loadEpisodes(27)
     }
 
     private fun loadEpisodeDetail(webtoonId: Int) {
@@ -59,193 +63,30 @@ class EpisodeViewModel @Inject constructor(
         }
     }
 
-    private fun loadDummyEpisodeCards() {
-        val dummyEpisodes = listOf(
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                index = 0,
-                title = "예고",
-                status = 10,
-                date = "24.10.03",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
-                index = 1,
-                title = "선언금지",
-                status = 7,
-                date = "24.10.10",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
-                index = 2,
-                title = "신문물",
-                status = 3,
-                date = "24.10.17",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
-                index = 3,
-                title = "선언금지",
-                status = 0,
-                date = "24.11.25",
-                dayUntilFree = 3
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                index = 0,
-                title = "예고",
-                status = 10,
-                date = "24.10.03",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
-                index = 1,
-                title = "선언금지",
-                status = 7,
-                date = "24.10.10",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
-                index = 2,
-                title = "소원",
-                status = 3,
-                date = "24.10.17",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
-                index = 3,
-                title = "왕vs왕",
-                status = 0,
-                date = "24.11.29",
-                dayUntilFree = 7
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
-                index = 3,
-                title = "왕vs왕",
-                status = 0,
-                date = "24.11.29",
-                dayUntilFree = 7
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                index = 0,
-                title = "예고",
-                status = 10,
-                date = "24.10.03",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
-                index = 1,
-                title = "선언금지",
-                status = 7,
-                date = "24.10.10",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
-                index = 2,
-                title = "내 동생",
-                status = 3,
-                date = "24.10.17",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
-                index = 3,
-                title = "될 것 같은데?",
-                status = 0,
-                date = "24.11.29",
-                dayUntilFree = 7
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
-                index = 280,
-                title = "기능이 많아 도전해보자구요",
-                status = 0,
-                date = "24.11.29",
-                dayUntilFree = 7
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                index = 0,
-                title = "예고",
-                status = 10,
-                date = "24.10.03",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
-                index = 1,
-                title = "선언금지",
-                status = 7,
-                date = "24.10.10",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
-                index = 2,
-                title = "소원",
-                status = 3,
-                date = "24.10.17",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
-                index = 3,
-                title = "왕 vs 왕",
-                status = 0,
-                date = "24.11.29",
-                dayUntilFree = 7
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
-                index = 3,
-                title = "위로부적격자",
-                status = 0,
-                date = "24.11.29",
-                dayUntilFree = 7
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                index = 0,
-                title = "예고",
-                status = 10,
-                date = "24.10.03",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/qNmzh5V/img-storage-toon05.png",
-                index = 1,
-                title = "선언금지",
-                status = 7,
-                date = "24.10.10",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/WH4pbTV/img-storage-toon06.png",
-                index = 2,
-                title = "예고",
-                status = 3,
-                date = "24.10.17",
-                dayUntilFree = 0
-            ),
-            EpisodeCard(
-                imageUrl = "https://i.ibb.co/xCF0VNF/img-storage-toon07.png",
-                index = 3,
-                title = "예고",
-                status = 0,
-                date = "24.11.29",
-                dayUntilFree = 7
-            )
-        )
-        _episodeDummyList.value = dummyEpisodes
+    private fun loadEpisodes(webtoonId: Int) {
+        viewModelScope.launch {
+            val result = episodesUseCase(webtoonId)
+            result.onSuccess { response ->
+                val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                val outputFormatter = DateTimeFormatter.ofPattern("yy.MM.dd")
+                val episodes = response.data.episodes.map {
+                    EpisodeCard(
+                        imageUrl = it.image,
+                        index = it.turn,
+                        title = it.title,
+                        status = it.status,
+                        date = try {
+                            LocalDate.parse(it.date, inputFormatter).format(outputFormatter)
+                        } catch (e: Exception) {
+                            "Invalid Date"
+                        },
+                        dayUntilFree = it.dayUntilFree
+                    )
+                }
+                _webtoonEpisodes.value = episodes
+            }.onFailure {
+
+            }
+        }
     }
 }
