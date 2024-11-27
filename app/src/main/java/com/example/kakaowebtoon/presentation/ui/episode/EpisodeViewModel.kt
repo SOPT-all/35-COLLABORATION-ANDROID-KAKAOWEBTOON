@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kakaowebtoon.domain.model.EpisodeCard
 import com.example.kakaowebtoon.domain.model.WebtoonDetail
-import com.example.kakaowebtoon.domain.usecase.DummyUseCase
+import com.example.kakaowebtoon.domain.usecase.EpisodeDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -12,11 +12,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class EpisodeViewModel @Inject constructor(
-    private val dummyUseCase: DummyUseCase
+    private val episodeDetailUseCase: EpisodeDetailUseCase
 ) : ViewModel() {
     private val _webtoonDetail = MutableStateFlow<WebtoonDetail?>(null)
     val webtoonDetail: StateFlow<WebtoonDetail?> = _webtoonDetail.asStateFlow()
@@ -34,22 +35,28 @@ class EpisodeViewModel @Inject constructor(
     )
 
     init {
-        loadDummyWebtoonDetail()
+        loadEpisodeDetail(27)
         loadDummyEpisodeCards()
     }
 
-    private fun loadDummyWebtoonDetail() {
-        val dummyDetail = WebtoonDetail(
-            imageUrl = "https://i.ibb.co/N7WKG7j/i-OS-png.png",
-            title = "어쿠스틱 라이프",
-            author = "난다",
-            genre = "코믹/일상",
-            viewCount = 270000000,
-            heartCount = 2007000,
-            coupon = 10,
-            promotion = "연재무료"
-        )
-        _webtoonDetail.value = dummyDetail
+    private fun loadEpisodeDetail(webtoonId: Int) {
+        viewModelScope.launch {
+            val result = episodeDetailUseCase(webtoonId)
+            result.onSuccess { response ->
+                val data = response.data
+                _webtoonDetail.value = WebtoonDetail(
+                    title = data.title,
+                    author = data.author,
+                    genre = data.genre,
+                    viewCount = data.viewCount,
+                    heartCount = data.heartCount,
+                    imageUrl = data.image,
+                    coupon = data.coupon,
+                    promotion = data.promotion
+                )
+            }.onFailure {
+            }
+        }
     }
 
     private fun loadDummyEpisodeCards() {

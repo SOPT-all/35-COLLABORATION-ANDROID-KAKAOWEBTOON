@@ -1,9 +1,12 @@
 package com.example.kakaowebtoon.data.dataremote.service
 
-import com.example.kakaowebtoon.data.dataremote.model.response.DummyResponseDto
-import retrofit2.http.POST
+import com.example.kakaowebtoon.data.dataremote.model.response.EpisodeDetailResponseDto
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface EpisodeService {
-    @POST("/API")
-    suspend fun funName(): List<DummyResponseDto>
+    @GET("/api/v1/episodes/{webtoonId}")
+    suspend fun episodeDetail(
+        @Path("webtoonId") webtoonId: Int
+    ): EpisodeDetailResponseDto
 }

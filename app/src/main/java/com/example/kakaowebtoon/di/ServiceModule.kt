@@ -1,6 +1,7 @@
 package com.example.kakaowebtoon.di
 
 import com.example.kakaowebtoon.data.dataremote.service.DummyService
+import com.example.kakaowebtoon.data.dataremote.service.EpisodeService
 import com.example.kakaowebtoon.data.dataremote.service.WebtoonsService
 import dagger.Module
 import dagger.Provides
@@ -21,4 +22,9 @@ object ServiceModule {
     @Singleton
     fun providesWebtoonsService(retrofit: Retrofit): WebtoonsService =
         retrofit.create(WebtoonsService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesEpisodeService(retrofit: Retrofit): EpisodeService =
+        retrofit.create(EpisodeService::class.java)
 }
