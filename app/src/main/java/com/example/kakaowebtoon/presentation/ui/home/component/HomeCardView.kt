@@ -19,7 +19,7 @@ fun HomeCardView(
         modifier = modifier.clip(RoundedCornerShape(8.dp)),
         model = imageUrl,
         contentDescription = null,
-        contentScale = ContentScale.Fit
+        contentScale = ContentScale.Crop
     )
 }
 
