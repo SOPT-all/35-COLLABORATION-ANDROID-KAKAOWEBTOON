@@ -85,7 +85,6 @@ class EpisodeViewModel @Inject constructor(
                 }
                 _webtoonEpisodes.value = episodes
             }.onFailure {
-
             }
         }
     }

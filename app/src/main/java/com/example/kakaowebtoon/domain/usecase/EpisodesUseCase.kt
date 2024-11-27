@@ -7,6 +7,6 @@ import javax.inject.Singleton
 @Singleton
 class EpisodesUseCase @Inject constructor(
     private val episodeRepository: EpisodeRepository
-){
-  suspend operator fun invoke(webtoonId: Int) = episodeRepository.episodes(webtoonId)
+) {
+    suspend operator fun invoke(webtoonId: Int) = episodeRepository.episodes(webtoonId)
 }

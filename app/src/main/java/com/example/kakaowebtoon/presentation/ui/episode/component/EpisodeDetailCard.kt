@@ -26,7 +26,6 @@ import com.example.kakaowebtoon.R
 import com.example.kakaowebtoon.domain.model.EpisodeCard
 import com.example.kakaowebtoon.presentation.util.showIf
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
-import java.time.LocalDate
 
 @Composable
 fun EpisodeDetailCard(

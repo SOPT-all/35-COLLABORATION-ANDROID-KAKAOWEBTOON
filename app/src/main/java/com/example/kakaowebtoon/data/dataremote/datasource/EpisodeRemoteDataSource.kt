@@ -5,5 +5,5 @@ import com.example.kakaowebtoon.data.dataremote.model.response.EpisodesResponseD
 
 interface EpisodeRemoteDataSource {
     suspend fun episodeDetail(webtoonId: Int): EpisodeDetailResponseDto
-    suspend fun episodes(webtoonId: Int):EpisodesResponseDto
+    suspend fun episodes(webtoonId: Int): EpisodesResponseDto
 }
