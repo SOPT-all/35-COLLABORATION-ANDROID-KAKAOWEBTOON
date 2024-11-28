@@ -59,7 +59,8 @@ fun MainNavHost(
             // TODO: Search NavGraph
             searchNavGraph(
                 padding = padding,
-                popUpBackStack = navigator::popBackStackIfNotHome
+                popUpBackStack = navigator::popBackStackIfNotHome,
+                onNavigateToEpisode = navigator::navigateEpisode
             )
 
             // TODO: Episode NavGraph

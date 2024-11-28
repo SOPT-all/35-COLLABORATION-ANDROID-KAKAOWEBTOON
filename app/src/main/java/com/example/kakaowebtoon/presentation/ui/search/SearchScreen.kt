@@ -28,6 +28,8 @@ import com.example.kakaowebtoon.domain.model.WebtoonCard
 import com.example.kakaowebtoon.presentation.ui.component.card.KakaoWebtoonCard
 import com.example.kakaowebtoon.presentation.ui.search.component.SearchTextField
 import com.example.kakaowebtoon.presentation.ui.search.component.SearchViewIndicator
+import com.example.kakaowebtoon.presentation.util.Search.EPISODE_TITLE
+import com.example.kakaowebtoon.presentation.util.noRippleClickable
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
@@ -35,7 +37,8 @@ fun SearchRoute(
     padding: PaddingValues,
     popUpBackStack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: SearchViewModel = hiltViewModel()
+    viewModel: SearchViewModel = hiltViewModel(),
+    onNavigateToEpisode: () -> Unit = {}
 ) {
     val webtoonCards by viewModel.webtoonSearchList.collectAsState()
     val webtoonDummyCards by viewModel.webtoonDummyList.collectAsState()
@@ -47,7 +50,8 @@ fun SearchRoute(
         webtoonDummyCards = webtoonDummyCards,
         searchText = searchText,
         onSearchTextChange = viewModel::updateSearchText,
-        modifier = modifier.padding(padding)
+        modifier = modifier.padding(padding),
+        onNavigateToEpisode = onNavigateToEpisode
     )
 }
 
@@ -58,7 +62,8 @@ fun SearchScreen(
     webtoonDummyCards: List<WebtoonCard>,
     searchText: String,
     onSearchTextChange: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateToEpisode: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -108,7 +113,16 @@ fun SearchScreen(
             }
 
             items(webtoonCards) { card ->
-                KakaoWebtoonCard(card)
+                KakaoWebtoonCard(
+                    card,
+                    modifier = Modifier.noRippleClickable {
+                        if (card.title == EPISODE_TITLE) {
+                            onNavigateToEpisode()
+                        } else {
+                            Unit
+                        }
+                    }
+                )
                 Spacer(modifier = Modifier.height(13.dp))
             }
 
