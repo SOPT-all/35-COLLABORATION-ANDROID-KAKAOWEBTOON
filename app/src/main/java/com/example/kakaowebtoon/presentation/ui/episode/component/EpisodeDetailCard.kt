@@ -8,11 +8,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -24,8 +26,6 @@ import com.example.kakaowebtoon.R
 import com.example.kakaowebtoon.domain.model.EpisodeCard
 import com.example.kakaowebtoon.presentation.util.showIf
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 @Composable
 fun EpisodeDetailCard(
@@ -34,9 +34,6 @@ fun EpisodeDetailCard(
 ) {
     val whiteColor = KakaoWebtoonTheme.colors.white
     val white50Color = KakaoWebtoonTheme.colors.white50
-
-    val today = LocalDate.now()
-    val cardDate = LocalDate.parse(card.date, DateTimeFormatter.ofPattern("yy.MM.dd"))
 
     Column(
         modifier = modifier
@@ -48,6 +45,8 @@ fun EpisodeDetailCard(
                 model = card.imageUrl,
                 contentDescription = null,
                 modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(6.dp))
                     .graphicsLayer(
                         alpha = if (card.status != 0) {
                             0.5f
@@ -82,7 +81,7 @@ fun EpisodeDetailCard(
                 modifier = Modifier
                     .padding(start = 1.dp, top = 2.dp)
                     .align(Alignment.TopStart)
-                    .showIf(cardDate.isBefore(today))
+                    .showIf(card.dayUntilFree != 0)
             )
         }
 

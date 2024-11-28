@@ -52,7 +52,7 @@ fun EpisodeRoute(
     viewModel: EpisodeViewModel = hiltViewModel()
 ) {
     val webtoonDetail by viewModel.webtoonDetail.collectAsStateWithLifecycle()
-    val episodeDummyCards by viewModel.episodeDummyList.collectAsStateWithLifecycle()
+    val episodeDummyCards by viewModel.webtoonEpisodes.collectAsStateWithLifecycle()
     val largestIndexEpisode by viewModel.largestIndexEpisode.collectAsStateWithLifecycle()
 
     EpisodeScreen(
