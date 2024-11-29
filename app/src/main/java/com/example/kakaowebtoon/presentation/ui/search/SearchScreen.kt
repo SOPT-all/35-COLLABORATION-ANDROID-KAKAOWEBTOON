@@ -45,6 +45,7 @@ fun SearchRoute(
     val searchText by viewModel.searchText.collectAsState()
 
     SearchScreen(
+        searchCount = webtoonCards.size,
         popUpBackStack = popUpBackStack,
         webtoonCards = webtoonCards,
         webtoonDummyCards = webtoonDummyCards,
@@ -57,6 +58,7 @@ fun SearchRoute(
 
 @Composable
 fun SearchScreen(
+    searchCount: Int,
     popUpBackStack: () -> Unit,
     webtoonCards: List<WebtoonCard>,
     webtoonDummyCards: List<WebtoonCard>,
@@ -91,7 +93,7 @@ fun SearchScreen(
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = stringResource(R.string.search_first_webtoon_list),
+                        text = stringResource(R.string.search_first_webtoon_list, searchCount),
                         style = KakaoWebtoonTheme.typography.body1Regular,
                         color = KakaoWebtoonTheme.colors.white
                     )
