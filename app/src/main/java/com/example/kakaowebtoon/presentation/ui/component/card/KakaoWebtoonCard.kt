@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,7 +39,28 @@ fun KakaoWebtoonCard(
         modifier = modifier
             .height(IntrinsicSize.Min)
     ) {
-        if (card.imageUrl.isNotEmpty()) {
+        if (card.imageUrl.contains("dummy")) {
+            when (card.imageUrl) {
+                "dummy1" -> Image(
+                    painter = painterResource(R.drawable.img_dummy_card1),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .width(LocalConfiguration.current.screenWidthDp.dp * (150f / 360f))
+                        .aspectRatio(150f / 95f)
+                )
+
+                "dummy2" -> Image(
+                    painter = painterResource(R.drawable.img_dummy_card2),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .width(LocalConfiguration.current.screenWidthDp.dp * (150f / 360f))
+                        .aspectRatio(150f / 95f)
+                )
+            }
+
+        } else if (card.imageUrl.isNotEmpty()) {
             AsyncImage(
                 model = card.imageUrl,
                 contentDescription = null,

@@ -41,72 +41,16 @@ class SearchViewModel @Inject constructor(
     private fun loadDummyWebtoonCards() {
         val dummyWebtoons = listOf(
             WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
+                imageUrl = "dummy1",
                 title = "청춘 로맨스",
                 promotion = "시계",
                 author = "미울, BV",
                 genre = "#로맨스"
             ),
             WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
+                imageUrl = "dummy2",
                 title = "귀짤 로맨스",
-                promotion = "연재 무료",
-                author = "이영원",
-                genre = "#로맨스"
-            ),
-            WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                title = "청춘 로맨스",
-                promotion = "시계",
-                author = "미울, BV",
-                genre = "#로맨스"
-            ),
-            WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                title = "귀짤 로맨스",
-                promotion = "연재 무료",
-                author = "이영원",
-                genre = "#로맨스"
-            ),
-            WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                title = "청춘 로맨스",
-                promotion = "시계",
-                author = "미울, BV",
-                genre = "#로맨스"
-            ),
-            WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                title = "귀짤 로맨스",
-                promotion = "연재 무료",
-                author = "이영원",
-                genre = "#로맨스"
-            ),
-            WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                title = "청춘 로맨스",
-                promotion = "시계",
-                author = "미울, BV",
-                genre = "#로맨스"
-            ),
-            WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                title = "귀짤 로맨스",
-                promotion = "연재 무료",
-                author = "이영원",
-                genre = "#로맨스"
-            ),
-            WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                title = "청춘 로맨스",
-                promotion = "시계",
-                author = "미울, BV",
-                genre = "#로맨스"
-            ),
-            WebtoonCard(
-                imageUrl = "https://i.ibb.co/sszrRjn/img-storage-toon04.png",
-                title = "귀짤 로맨스",
-                promotion = "연재 무료",
+                promotion = "연재무료",
                 author = "이영원",
                 genre = "#로맨스"
             )
