@@ -85,6 +85,6 @@ feat-my-page-api
 <aside>
 ▶️ 시연 영상
 
-https://github.com/user-attachments/assets/84ebd7c1-1175-46f8-a79f-50ae4c7312c2
+https://github.com/user-attachments/assets/a241921e-3cb7-48b3-af9b-5fc11f99f678
 
 </aside>
