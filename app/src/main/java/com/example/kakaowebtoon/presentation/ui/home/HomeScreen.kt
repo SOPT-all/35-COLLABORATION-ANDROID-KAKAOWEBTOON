@@ -34,7 +34,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.kakaowebtoon.R
 import com.example.kakaowebtoon.domain.model.WebtoonCard
-import com.example.kakaowebtoon.domain.util.HomeFilter
 import com.example.kakaowebtoon.presentation.type.HomeGenreType
 import com.example.kakaowebtoon.presentation.type.IndicatorType
 import com.example.kakaowebtoon.presentation.type.TopBarType
@@ -46,6 +45,7 @@ import com.example.kakaowebtoon.presentation.ui.home.component.HomeCardView
 import com.example.kakaowebtoon.presentation.ui.home.component.HomeFilterTextButton
 import com.example.kakaowebtoon.presentation.ui.home.component.HomeFooter
 import com.example.kakaowebtoon.presentation.ui.home.component.HomeGenreTabRow
+import com.example.kakaowebtoon.presentation.util.HomeFilter
 import com.example.kakaowebtoon.ui.theme.KakaoWebtoonTheme
 
 @Composable
