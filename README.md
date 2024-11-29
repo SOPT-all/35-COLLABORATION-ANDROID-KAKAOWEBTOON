@@ -81,3 +81,10 @@ feat-my-page-api
 ┣ 📂 theme
 ┣ 📂 util
 ```
+
+<aside>
+▶️ 시연 영상
+
+https://github.com/user-attachments/assets/84ebd7c1-1175-46f8-a79f-50ae4c7312c2
+
+</aside>
