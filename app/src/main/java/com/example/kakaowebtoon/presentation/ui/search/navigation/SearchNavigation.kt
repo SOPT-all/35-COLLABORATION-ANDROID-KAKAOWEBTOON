@@ -13,12 +13,14 @@ fun NavController.navigateSearch() {
 
 fun NavGraphBuilder.searchNavGraph(
     padding: PaddingValues,
-    popUpBackStack: () -> Unit
+    popUpBackStack: () -> Unit,
+    onNavigateToEpisode: () -> Unit = {}
 ) {
     composable<Route.Search> {
         SearchRoute(
             padding = padding,
-            popUpBackStack = popUpBackStack
+            popUpBackStack = popUpBackStack,
+            onNavigateToEpisode = onNavigateToEpisode
         )
     }
 }

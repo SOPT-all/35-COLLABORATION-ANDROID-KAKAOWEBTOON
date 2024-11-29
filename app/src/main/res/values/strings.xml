@@ -24,7 +24,7 @@
 
     <!--  Search View  -->
     <string name="search_text_field_placeholder">작품, 작가, 장르를 입력하세요.</string>
-    <string name="search_first_webtoon_list">웹툰 1</string>
+    <string name="search_first_webtoon_list">웹툰 %d</string>
     <string name="search_recommend_webtoon_list">나를 위한 추천 웹툰</string>
     <string name="search_filtering_popularity">인기순</string>
     <string name="search_under_arrow_icon_description">Icon Search View Under Arrow</string>
