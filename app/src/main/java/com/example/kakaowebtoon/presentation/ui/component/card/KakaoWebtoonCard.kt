@@ -59,7 +59,6 @@ fun KakaoWebtoonCard(
                         .aspectRatio(150f / 95f)
                 )
             }
-
         } else if (card.imageUrl.isNotEmpty()) {
             AsyncImage(
                 model = card.imageUrl,
